@@ -23,11 +23,11 @@ const page = () => {
         body: JSON.stringify(formData),
       }
     );
-    if (response.ok) {
-      const data = await response.json();
+    if (res.ok) {
+      const data = await res.json();
       console.log('User created successfully:', data);
   } else {
-      console.error('Failed to create user:', response.statusText);
+      console.error('Failed to create user:', res.statusText);
   }
 }
   catch (error) {

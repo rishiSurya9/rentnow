@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-
+import { useRouter } from 'next/router'
 const page = () => {
   const [formData,setFormData] = useState(0);
   const handleChange = (e) => {
@@ -26,6 +26,7 @@ const page = () => {
     if (res.ok) {
       const data = await res.json();
       console.log('User created successfully:', data);
+      router.push('/Profile');
   } else {
       console.error('Failed to create user:', res.statusText);
   }

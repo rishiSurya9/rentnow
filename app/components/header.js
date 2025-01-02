@@ -22,7 +22,7 @@ const Header = () => {
       <Link href='/'> <li className='hidden sm:inline text-slate-700 hover:text-lg'>Home</li></Link>
         <Link href='/About'> <li className='hidden sm:inline text-slate-700 hover:text-lg'>About</li></Link>
         <Link href='/Profile'> <li className='hidden sm:inline text-slate-700 hover:text-lg'>Profile</li></Link>
-        <Link href='/signup'> <li className='hidden sm:inline text-slate-700 hover:text-lg'>Login</li></Link>
+        <Link href='/signup'> <li className='hidden sm:inline text-slate-700 hover:text-lg'>Signup</li></Link>
       </ul>
     </div>
     </header>

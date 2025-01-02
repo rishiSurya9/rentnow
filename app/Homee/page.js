@@ -44,9 +44,9 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-red-50 text-gray-900">
       {/* Header */}
-      <header className="bg-[#ca214b] py-6">
+      <header className="bg-red-30 py-6">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <h1 className="text-3xl font-bold text-white mb-4 md:mb-0">Search Your Home</h1>
+          <h1 className="text-3xl font-bold text-white mb-4 md:mb-0 text-red-600">Search Your Home</h1>
           <div className="flex items-center w-full md:w-auto">
             <input
               type="text"

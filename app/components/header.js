@@ -44,19 +44,19 @@ const Header = () => {
 
           {/* Menu Options */}
           <ul
-            className={`MenuOption flex flex-col sm:flex-row gap-4 items-center sm:static fixed top-16 right-0 p-3 w-1/3 sm:w-auto bg-white sm:bg-transparent shadow-lg sm:shadow-none transition-transform duration-300 ease-in-out ${menuVisible ? 'translate-x-0' : 'translate-x-full'} sm:translate-x-0 font-bold`}
+            className={`MenuOption flex flex-col sm:flex-row gap-4 items-center sm:static fixed top-16 right-0 p-3 w-1/3 sm:w-auto bg-white sm:bg-transparent shadow-lg sm:shadow-none transition-transform duration-300 ease-in-out ${menuVisible ? 'translate-x-0' : 'translate-x-full'} sm:translate-x-0 font-bold md:text-white`}
           >
             <Link href='/Homee'>
-              <li className='text-white hover:text-lg hover:text-red-800'>Home</li>
+              <li className=' hover:text-lg hover:font-semibold'>Home</li>
             </Link>
             <Link href='/About'>
-              <li className='text-white hover:text-lg hover:text-red-800'>About</li>
+              <li className='md:text-white hover:text-lg hover:font-semibold'>About</li>
             </Link>
             <Link href='/Profile'>
-              <li className='text-white hover:text-lg hover:text-red-800'>Profile</li>
+              <li className='md:text-white hover:text-lg hover:font-semibold'>Profile</li>
             </Link>
             <Link href='/signup'>
-              <li className='text-white hover:text-lg hover:text-red-800'>Signup</li>
+              <li className='md:text-white hover:text-lg hover:font-semibold'>Signup</li>
             </Link>
           </ul>
         </div>
@@ -65,6 +65,7 @@ const Header = () => {
       {/* Page Content */}
       <main className='pt-16'>
         {/* Content goes here */}
+        
       </main>
     </>
   );

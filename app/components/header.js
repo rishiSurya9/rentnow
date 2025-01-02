@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoReorderThreeSharp } from "react-icons/io5";
 import Link from 'next/link';
@@ -10,6 +10,20 @@ const Header = () => {
   const ShowMenu = () => {
     setMenuVisible(!menuVisible); // Toggle the menu visibility
   };
+
+  const handleClickOutside = (e) => {
+    if (!e.target.closest('.MenuOption') && !e.target.closest('.menu-icon')) {
+      setMenuVisible(false); // Hide the menu if clicking outside
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -23,7 +37,7 @@ const Header = () => {
           {/* Mobile Menu Icon */}
           <div
             onClick={ShowMenu}
-            className='sm:hidden text-4xl text-slate-800 ml-auto cursor-pointer'
+            className='menu-icon sm:hidden text-4xl text-slate-800 ml-auto cursor-pointer'
           >
             <IoReorderThreeSharp />
           </div>

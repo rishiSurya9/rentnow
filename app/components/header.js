@@ -1,4 +1,6 @@
+"use client"
 import React from 'react'
+
 import {FaSearch} from 'react-icons/fa';
 import Link from 'next/link';
 const Header = () => {

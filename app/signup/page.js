@@ -14,7 +14,7 @@ const page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const res = await fetch('/api/auth/signup', 
+    const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
       {
         method: 'POST',
         headers: {

@@ -1,10 +1,13 @@
 "use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
   const [formData, setFormData] = useState(0);
-  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const router = useRouter();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -14,6 +17,7 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
         {
@@ -24,14 +28,19 @@ const page = () => {
           body: JSON.stringify(formData),
         }
       );
-      if (res.ok) {
-        const data = await res.json();
-        console.log('User created successfully:', data);
-      } else {
-        console.error('Failed to create user:', res.statusText);
+      const data = await res.json();
+      console.log(data);
+      if (data.success === false) {
+        setLoading(false);
+        setError(data.message);
+        return;
       }
+      setLoading(false);
+      setError(null);
+     router.push('/Login');
     } catch (error) {
-      console.error('Error:', error);
+      setLoading(false);
+      setError(error.message);
     }
   };
 
@@ -60,8 +69,8 @@ const page = () => {
           className='border-2 border-red-500 rounded-lg p-2 focus:border-red-600'
           onChange={handleChange}
         />
-        <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
-          Signup
+        <button disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
+        {loading ? 'Loading...' : 'Sign Up'}
         </button>
       </form>
       <div className='flex justify-center items-center gap-4'>

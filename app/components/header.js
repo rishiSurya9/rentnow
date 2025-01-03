@@ -27,14 +27,12 @@ const Header = () => {
 
   return (
     <>
-      {/* Header */}
-      <header className='bg-red-700 shadow-md h-16 fixed top-0 left-0 w-full z-50'>
+      <header className='bg-red-700 shadow-md '>
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
           <h1 className='font-bold text-sm sm:text-xl'>
             <span className='text-white text-2xl hover:text-gray-200 cursor-pointer'>RentNow</span>
           </h1>
 
-          {/* Mobile Menu Icon */}
           <div
             onClick={ShowMenu}
             className='menu-icon sm:hidden text-4xl text-white ml-auto cursor-pointer'
@@ -42,31 +40,30 @@ const Header = () => {
             <IoReorderThreeSharp />
           </div>
 
-          {/* Menu Options */}
           <ul
-            className={`MenuOption flex flex-col sm:flex-row gap-4 items-center sm:static fixed top-16 right-0 p-3 w-1/3 sm:w-auto bg-white sm:bg-transparent shadow-lg sm:shadow-none transition-transform duration-300 ease-in-out ${menuVisible ? 'translate-x-0' : 'translate-x-full'} sm:translate-x-0 font-bold md:text-white`}
+         
+            // className={`MenuOption flex flex-col sm:flex-row gap-4 items-center sm:static fixed top-16 right-0 p-3 w-1/3 sm:w-auto bg-white sm:bg-transparent shadow-lg sm:shadow-none transition-transform duration-300 ease-in-out ${menuVisible ? 'translate-x-0' : 'translate-x-full'} sm:translate-x-0 font-bold md:text-white`}
+            className={`MenuOption flex flex-col sm:flex-row gap-2 sm:gap-4 items-center sm:static fixed top-16 right-0 p-3 w-2/3 sm:w-auto bg-white sm:bg-transparent shadow-lg sm:shadow-none z-50 transition-transform duration-300 ease-in-out ${menuVisible ? 'translate-x-0' : 'translate-x-full'} sm:translate-x-0`}
+
+          
           >
-            <Link href='/Homee'>
-              <li className=' hover:text-lg hover:font-semibold'>Home</li>
+            <Link href='/'>
+              <li className='md:text-white  hover:text-lg  hover:underline inline-block transition-all duration-300'>Home</li>
             </Link>
             <Link href='/About'>
-              <li className='md:text-white hover:text-lg hover:font-semibold'>About</li>
+              <li className='md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300'>About</li>
             </Link>
             <Link href='/Profile'>
-              <li className='md:text-white hover:text-lg hover:font-semibold'>Profile</li>
+              <li className='md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300'>Profile</li>
             </Link>
             <Link href='/signup'>
-              <li className='md:text-white hover:text-lg hover:font-semibold'>Signup</li>
+              <li className='md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300'>Signup</li>
             </Link>
           </ul>
         </div>
       </header>
 
-      {/* Page Content */}
-      <main className='pt-16'>
-        {/* Content goes here */}
-        
-      </main>
+      
     </>
   );
 };

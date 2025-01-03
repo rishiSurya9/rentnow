@@ -19,29 +19,23 @@ const page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, 
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-          credentials: 'include',
-        }
-      );
+      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        credentials: 'include',
+      });
       const data = await res.json();
-      console.log(data);
       if (data.success === false) {
-        setLoading(false);
         setError(data.message);
         return;
       }
-      setLoading(false);
       setError(null);
-     router.push('/');
+      router.push('/');
     } catch (error) {
+      setError(error.message || "An unknown error occurred");
+    } finally {
       setLoading(false);
-      setError(error.message);
     }
   };
 

@@ -76,6 +76,7 @@ const page = () => {
       <div className='flex justify-center items-center gap-4'>
         <p>Already have an account? <Link href='/Login' className='text-red-800 underline'>Login</Link></p>
       </div>
+      {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>
   );
 };

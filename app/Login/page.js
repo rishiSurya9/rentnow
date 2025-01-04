@@ -35,7 +35,7 @@ const page = () => {
         setError(data.message);
         return;
       }
-      else{
+      if(res.status === 200) {
       setLoading(false);
       setError(null);
      router.push('/');

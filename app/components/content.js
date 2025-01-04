@@ -9,14 +9,14 @@ const Content = () => {
       title: "Cozy 2BHK Apartment",
       location: "Downtown",
       price: "$1200/month",
-      image: "",
+      image: "ex.jpg",
     },
     {
       id: 2,
       title: "Spacious 3BHK Villa",
       location: "Green Valley",
       price: "$2500/month",
-      image: "",
+      image: "exp.jpg",
     },
   ]);
 

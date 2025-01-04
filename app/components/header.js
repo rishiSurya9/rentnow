@@ -63,14 +63,8 @@ const Header = () => {
         </div>
       </header>
 
-<<<<<<< HEAD
       {/* Page Content */}
-      <main className='pt-16'>
-       
-      </main>
-=======
-      
->>>>>>> 66dbbff47ef8542cc9e6ba77baff330adbac3232
+     
     </>
   );
 };

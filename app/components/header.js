@@ -64,8 +64,7 @@ const Header = () => {
 
       {/* Page Content */}
       <main className='pt-16'>
-        {/* Content goes here */}
-        
+       
       </main>
     </>
   );

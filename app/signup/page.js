@@ -35,9 +35,11 @@ const page = () => {
         setError(data.message);
         return;
       }
+      else{
       setLoading(false);
       setError(null);
      router.push('/Login');
+      }
     } catch (error) {
       setLoading(false);
       setError(error.message);

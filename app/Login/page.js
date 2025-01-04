@@ -36,10 +36,11 @@ const page = () => {
         return;
       }
       if(res.status === 200) {
-      setLoading(false);
-      setError(null);
+      
      router.push('/');
       }
+      setLoading(false);
+      setError(null);
     } catch (error) {
       setLoading(false);
       setError(error.message);

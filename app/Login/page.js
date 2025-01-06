@@ -22,6 +22,7 @@ const page = () => {
       const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, 
         {
           method: 'POST',
+          credentials: 'include', 
           headers: {
             'Content-Type': 'application/json',
           },

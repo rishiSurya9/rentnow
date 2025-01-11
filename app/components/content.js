@@ -42,11 +42,11 @@ const Content = () => {
   };
 
   return (
-    <div className="min-h-screen bg-red-100 text-gray-900">
+    <div className="min-h-screen bg-red-50 text-gray-900">
       {/* Header */}
       <header className="bg-red-30 py-6">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <h1 className="text-3xl font-bold text-white  mb-4 md:mb-0 ">Search Your Home</h1>
+          <h1 className="text-3xl font-bold sm:text-black  mb-4 md:mb-0  ">Search Your Home</h1>
           <div className="flex items-center w-full md:w-auto">
             <input
               type="text"
@@ -71,7 +71,7 @@ const Content = () => {
         
         {/* Properties Listing */}
         <section className="md:col-span-2">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">Available Properties</h2>
+          <h2 className="text-2xl font-bold mb-6 text-black font-bold">Available Properties</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {properties.map((property) => (
               <div key={property.id} className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">

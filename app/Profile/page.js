@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-
+import Link from "next/link";
 const page = () => {
   const [formData, setFormData] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -98,10 +98,11 @@ const page = () => {
         <span className="text-sm text-gray-500 cursor-pointer font-bold">
           Delete Account
         </span>
-
+        <Link href='/signup' className='text-red-800 underline'>
         <span className="text-sm text-gray-500 cursor-pointer font-bold">
-          Sign in
+          login
         </span>
+        </Link>
       </div>
     </div>
   );

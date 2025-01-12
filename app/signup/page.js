@@ -19,9 +19,10 @@ const page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/auth/signup`, 
+      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, 
         {
           method: 'POST',
+          credentials: 'include', 
           headers: {
             'Content-Type': 'application/json',
           },
@@ -30,18 +31,20 @@ const page = () => {
       );
       const data = await res.json();
       console.log(data);
-      if (!data.success) {
-        setError(data.message);
-      } else {
-        setError(null);
-        router.push('/login');
+      if (!res.ok) {
+        setLoading(false);
+        setError(data.message || 'An error occurred');
+        return;
       }
-    } catch (error) {
-      setError(error.message);
-    } finally {
+      router.push('/Login');
       setLoading(false);
+      setError(null);
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
     }
   };
+
   return (
     <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto'>
       <h1 className='text-center font-bold text-2xl text-red-600'>Signup</h1>

@@ -30,17 +30,16 @@ const page = () => {
       );
       const data = await res.json();
       console.log(data);
-      if (!res.ok) {
-        setLoading(false);
-        setError(data.message || 'An error occurred');
-        return;
+      if (!data.success) {
+        setError(data.message);
+      } else {
+        setError(null);
+        router.push('/login');
       }
-      router.push('/');
-      setLoading(false);
-      setError(null);
     } catch (error) {
-      setLoading(false);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   return (

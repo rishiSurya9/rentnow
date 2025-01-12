@@ -19,7 +19,7 @@ const page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, 
+      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
         {
           method: 'POST',
           credentials: 'include', 

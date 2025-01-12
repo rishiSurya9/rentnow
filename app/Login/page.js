@@ -2,7 +2,9 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import {  toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const page = () => {
@@ -50,8 +52,8 @@ const page = () => {
 
 
 
-  const notify = ()=>{
-
+  const notify = (e)=>{
+    e.preventDefault();
   toast.success('Login Successful!', {
     position: "top-right",
     autoClose: 5000,

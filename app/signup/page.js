@@ -46,8 +46,9 @@ const page = () => {
     }
   };
 
-  const notify = ()=>{
-    toast.success('🦄 Wow so easy!', {
+  const notify = (e)=>{
+    e.preventDefault()
+    toast.success('Account Created Successfully!', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,

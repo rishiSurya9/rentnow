@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const [formData, setFormData] = useState({});
@@ -20,6 +21,18 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    toast.success('Information Updated!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      onClick: ()=>console.log('clicked'),
+      theme: "light",
+      });
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API}/api/auth/update`,
@@ -47,6 +60,9 @@ const ProfilePage = () => {
       setError(error.message);
     }
   };
+
+
+ 
 
   return (
     <div className="p-3 max-w-lg mx-auto bg-red-100 shadow-xl rounded-lg mt-6">
@@ -99,6 +115,7 @@ const ProfilePage = () => {
           {loading ? "Loading..." : "Update"}
 
         </button>
+        {/* <button onClick={notify}>Show Toast</button> */}
       </form>
 
       {error && (

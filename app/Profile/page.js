@@ -90,7 +90,7 @@ const page = () => {
           onClick={handleSubmit}
           className="bg-red-500 text-white p-3 rounded-lg  uppercase hover:opacity-90 disabled:opacity-85 "
         >
-          Update
+        {Loading ? 'Loading...' : 'Updated'}
         </button>
       </form>
 

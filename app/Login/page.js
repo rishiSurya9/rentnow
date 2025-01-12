@@ -60,9 +60,10 @@ const page = () => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
+    onClick: ()=>console.log('clicked'),
     theme: "light",
     });
-  }
+  };
 
 
   return (
@@ -84,7 +85,7 @@ const page = () => {
           className='border-2 border-red-500 rounded-lg p-2 focus:border-red-600'
           onChange={handleChange}
         />
-        <button onSubmit={notify} disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
+        <button onClick={notify} disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
         {loading ? 'Loading...' : 'Login'}
         </button>
       </form>

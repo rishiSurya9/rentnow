@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+"use client";
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
   const [formData, setFormData] = useState({});
@@ -28,14 +30,12 @@ const Page = () => {
       });
       const data = await res.json();
       console.log(data);
-      if (data.success === false) {
+      if (!res.ok) {
         setLoading(false);
-        setError(data.message);
+        setError(data.message || 'An error occurred');
         return;
       }
-      if (res.status === 200) {
-        router.push("/login");
-      }
+      router.push('/');
       setLoading(false);
       setError(null);
     } catch (error) {

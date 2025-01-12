@@ -16,51 +16,49 @@ const page = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
-        {
-          method: 'POST',
-          credentials: 'include', 
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      const data = await res.json();
-      console.log(data);
-      if (!res.ok) {
-        setLoading(false);
-        setError(data.message || 'An error occurred');
-        return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
+      {
+        method: 'POST',
+        credentials: 'include', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       }
-      router.push('/Login');
+    );
+    const data = await res.json();
+    console.log(data);
+    if (!res.ok) {
       setLoading(false);
-      setError(null);
-    } catch (error) {
-      setLoading(false);
-      setError(error.message);
+      setError(data.message || 'An error occurred');
+      return;
     }
-  };
-
-  const notify = (e)=>{
-    e.preventDefault()
-    toast.success('Account Created Successfully!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-
-      });
-
+    notify(); // Call notify function on successful account creation
+    router.push('/Login');
+    setLoading(false);
+    setError(null);
+  } catch (error) {
+    setLoading(false);
+    setError(error.message);
   }
+};
+
+const notify = () => {
+  toast.success('Account Created Successfully!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+}
 
   return (
     <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto mt-8 bg-red-100  shadow-xl '>
@@ -87,7 +85,7 @@ const page = () => {
           className='border-2 border-red-500 rounded-lg p-2 focus:border-red-600'
           onChange={handleChange}
         />
-        <button onClick={notify} disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
+        <button disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
         {loading ? 'Loading...' : 'Sign Up'}
         </button>
       </form>

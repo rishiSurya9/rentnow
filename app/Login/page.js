@@ -32,15 +32,12 @@ const page = () => {
       );
       const data = await res.json();
       console.log(data);
-      if (data.success === false) {
+      if (!res.ok) {
         setLoading(false);
-        setError(data.message);
+        setError(data.message || 'An error occurred');
         return;
       }
-      if(res.status === 200) {
-      
-     router.push('/');
-      }
+      router.push('/');
       setLoading(false);
       setError(null);
     } catch (error) {

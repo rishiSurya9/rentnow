@@ -20,35 +20,32 @@ const page = () => {
 
   // }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/update`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      console.log(data);
-      if (data.success === false) {
-        setLoading(false);
-        setError(data.message);
-        return;
-      }
-      if (res.status === 200) {
-        router.push("/Login");
-      }
-      setLoading(false);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/auth/update`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json();
+    console.log(data);
+    if (!data.success) {
+      setError(data.message);
+    } else if (res.status === 200) {
+      router.push("/login");
       setError(null);
-    } catch (error) {
-      setLoading(false);
-      setError(error.message);
     }
-  };
+  } catch (error) {
+    setError(error.message);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -61,7 +58,7 @@ const page = () => {
         />
 
         {/* <input onChange={handleChange} type='text' placeholder='Username' id='username' className='border p-3 rounded-lg' /> */}
-        <label htmlFor="username">rest.username</label>
+        <label htmlFor="username">{username}</label>
 
         <input
           onChange={handleChange}

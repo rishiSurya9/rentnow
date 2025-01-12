@@ -19,7 +19,7 @@ const page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/auth/signup`, 
         {
           method: 'POST',
           headers: {
@@ -30,22 +30,18 @@ const page = () => {
       );
       const data = await res.json();
       console.log(data);
-      if (data.success === false) {
-        setLoading(false);
+      if (!data.success) {
         setError(data.message);
-        return;
-      }
-      else{
-      setLoading(false);
-      setError(null);
-     router.push('/Login');
+      } else {
+        setError(null);
+        router.push('/login');
       }
     } catch (error) {
-      setLoading(false);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
     <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto'>
       <h1 className='text-center font-bold text-2xl text-red-600'>Signup</h1>

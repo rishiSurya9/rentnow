@@ -64,7 +64,7 @@ const page = () => {
 
   const handleGoogleLogin= (e)=>{
     e.preventDefault()
-    console.log("handle Google login")
+    console.log("handle Google login successfully")
   }
 
   return (

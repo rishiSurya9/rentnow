@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import {  toast } from 'react-toastify';
+
 
 const page = () => {
   const [formData, setFormData] = useState(0);
@@ -13,7 +15,7 @@ const page = () => {
       ...formData,
       [e.target.id]: e.target.value
     });
-    console.log(formData);
+    // console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -46,8 +48,25 @@ const page = () => {
     }
   };
 
+
+
+  const notify = ()=>{
+
+  toast.success('Login Successful!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+  }
+
+
   return (
-    <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto'>
+   <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto my-5 bg-red-100 shadow-xl'>
       <h1 className='text-center font-bold text-2xl text-red-600'>Login</h1>
       <form className='flex flex-col gap-4 p-4'>
        
@@ -65,7 +84,7 @@ const page = () => {
           className='border-2 border-red-500 rounded-lg p-2 focus:border-red-600'
           onChange={handleChange}
         />
-        <button disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
+        <button onSubmit={notify} disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
         {loading ? 'Loading...' : 'Login'}
         </button>
       </form>

@@ -49,23 +49,23 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
+    <div className="p-3 max-w-lg mx-auto bg-red-100 shadow-xl rounded-lg mt-6">
+      <h1 className="text-3xl font-bold text-center my-7  text-red-600">Profile</h1>
 
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4 ">
         <img
           src="https://picsum.photos/200"
           alt="profile"
-          className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center mt-2"
+          className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center "
         />
 
-        <label htmlFor="username">Username</label>
+        {/* <label htmlFor="username">Username</label> */}
         <input
           onChange={handleChange}
           type="text"
           placeholder="Username"
           id="username"
-          className="border p-3 rounded-lg"
+          className="border-black p-3 rounded-lg "
         />
 
         <input
@@ -96,11 +96,8 @@ const ProfilePage = () => {
           className="bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-85"
           disabled={loading}
         >
-<<<<<<< HEAD
-        {Loading ? 'Loading...' : 'Updated'}
-=======
-          {loading ? "Updating..." : "Update"}
->>>>>>> 3c5aeca9a0a0e0933e73a6789f244daf71cd703d
+          {loading ? "Loading..." : "Update"}
+
         </button>
       </form>
 

@@ -38,6 +38,7 @@ const page = () => {
         setError(data.message || 'An error occurred');
         return;
       }
+      notify();
       router.push('/Login');
       setLoading(false);
       setError(null);
@@ -47,21 +48,21 @@ const page = () => {
     }
   };
 
-  // const notify = (e)=>{
-  //   e.preventDefault()
-  //   toast.success('Account Created Successfully!', {
-  //     position: "top-right",
-  //     autoClose: 5000,
-  //     hideProgressBar: false,
-  //     closeOnClick: false,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "light",
+  const notify = (e)=>{
+    e.preventDefault()
+    toast.success('Account Created Successfully!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
 
-  //     });
+      });
 
-  // }
+  }
 
   // const handleGoogleLogin= (e)=>{
   //   e.preventDefault()

@@ -41,6 +41,7 @@ const page = () => {
         setError(data.message || 'An error occurred');
         return;
       }
+      notify();
       router.push('/');
       setLoading(false);
       setError(null);
@@ -52,20 +53,19 @@ const page = () => {
 
 
 
-  // const notify = (e)=>{
-  //   e.preventDefault();
-  // toast.success('Login Successful!', {
-  //   position: "top-right",
-  //   autoClose: 5000,
-  //   hideProgressBar: false,
-  //   closeOnClick: false,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  //   onClick: ()=>console.log('clicked'),
-  //   theme: "light",
-  //   });
-  // };
+  const notify = ()=>{
+  toast.success('Login Successful!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    onClick: ()=>console.log('clicked'),
+    theme: "light",
+    });
+  };
 
 
   return (

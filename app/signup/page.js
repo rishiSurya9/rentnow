@@ -59,11 +59,7 @@ const page = () => {
     });
   };
 
-  // const handleGoogleLogin= (e)=>{
-  //   e.preventDefault()
-  //   console.log("handle Google login successfully")
-  // }
-
+ 
   return (
     <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto mt-8 bg-red-100  shadow-xl '>
       <h1 className='text-center font-bold text-3xl text-red-600   '>Create Your Account</h1>

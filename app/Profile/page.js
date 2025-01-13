@@ -35,7 +35,7 @@ const ProfilePage = () => {
       });
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/users/update/:id`,
+        `${process.env.PUBLIC_API}/api/auth/users/update/:id`,
         {
           method: "POST",
           credentials: "include",

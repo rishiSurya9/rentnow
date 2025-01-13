@@ -21,16 +21,14 @@ const page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, 
-        {
-          method: 'POST',
-          credentials: 'include', 
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`${process.env.PUBLIC_API}/api/auth/signup`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       console.log(data);
       if (!res.ok) {
@@ -38,7 +36,7 @@ const page = () => {
         setError(data.message || 'An error occurred');
         return;
       }
-      notify();
+      notify(); // Call notify without an event
       router.push('/Login');
       setLoading(false);
       setError(null);
@@ -48,8 +46,7 @@ const page = () => {
     }
   };
 
-  const notify = (e)=>{
-    e.preventDefault()
+  const notify = () => {
     toast.success('Account Created Successfully!', {
       position: "top-right",
       autoClose: 5000,
@@ -59,10 +56,8 @@ const page = () => {
       draggable: true,
       progress: undefined,
       theme: "light",
-
-      });
-
-  }
+    });
+  };
 
   // const handleGoogleLogin= (e)=>{
   //   e.preventDefault()

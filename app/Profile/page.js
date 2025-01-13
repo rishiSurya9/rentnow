@@ -95,17 +95,11 @@ const ProfilePage = () => {
         <input
           onChange={handleChange}
           type="password"
-          placeholder="Old password"
-          id="oldPassword"
+          placeholder="password"
+          id="password"
           className="border p-3 rounded-lg"
         />
-        <input
-          onChange={handleChange}
-          type="password"
-          placeholder="New password"
-          id="newPassword"
-          className="border p-3 rounded-lg"
-        />
+        
 
         <button
           onClick={handleSubmit}

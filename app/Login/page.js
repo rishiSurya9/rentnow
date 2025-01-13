@@ -70,7 +70,7 @@ const page = () => {
 
   return (
    <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto my-5 bg-red-100 shadow-xl'>
-      <h1 className='text-center font-bold text-2xl text-red-600'>Login</h1>
+      <h1 className='text-center font-bold text-2xl text-blue-600'>Login</h1>
       <form className='flex flex-col gap-4 p-4'>
        
         <input

@@ -35,7 +35,7 @@ const ProfilePage = () => {
       });
     try {
       const res = await fetch(
-        `${process.env.PUBLIC_API}/api/auth/update`,
+        `${process.env.NEXT_PUBLIC_API}/api/auth/update`,
         {
           method: "POST",
           credentials: "include",
@@ -95,11 +95,17 @@ const ProfilePage = () => {
         <input
           onChange={handleChange}
           type="password"
-          placeholder="password"
-          id="password"
+          placeholder="Old password"
+          id="oldPassword"
           className="border p-3 rounded-lg"
         />
-        
+        <input
+          onChange={handleChange}
+          type="password"
+          placeholder="New password"
+          id="newPassword"
+          className="border p-3 rounded-lg"
+        />
 
         <button
           onClick={handleSubmit}

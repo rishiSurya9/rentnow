@@ -14,6 +14,8 @@ export const OAuth = () => {
             const auth = getAuth(app);
             const result = await signInWithPopup(auth, provider);
             const res = await fetch(`${process.env.PUBLIC_API}/api/auth/google`, {
+                method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                   },

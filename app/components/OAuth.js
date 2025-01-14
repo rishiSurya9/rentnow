@@ -8,7 +8,7 @@ export const OAuth = () => {
     const router = useRouter();
     const handleGoogleClick = async () => {
         try{
-            console.log("FirebaseAPI Key:", firebaseApiKey);
+            console.log(process.env.FIRE_BASE_API);
 
             const provider = new GoogleAuthProvider();
             const auth = getAuth(app);

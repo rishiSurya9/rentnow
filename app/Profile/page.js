@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -9,7 +8,7 @@ import { useSelector } from "react-redux"; // Import to access the Redux state
 const ProfilePage = () => {
   // Access the current user from Redux state
   const { currentUser } = useSelector((state) => state.user);
-  
+
   const [formData, setFormData] = useState({
     username: currentUser?.username || "",
     email: currentUser?.email || "",
@@ -27,7 +26,8 @@ const ProfilePage = () => {
       setFormData({
         username: currentUser.username,
         email: currentUser.email,
-        password: currentUser.password,
+        oldPassword: "", // Reset oldPassword and newPassword
+        newPassword: "",
       });
     }
   }, [currentUser]);
@@ -115,12 +115,20 @@ const ProfilePage = () => {
         <input
           onChange={handleChange}
           type="password"
-          placeholder="password"
-          id="password"
-          value={formData.password}
+          placeholder="Old password"
+          id="oldPassword"
+          value={formData.oldPassword} // Set value to the old password
           className="border p-3 rounded-lg"
         />
-       
+
+        <input
+          onChange={handleChange}
+          type="password"
+          placeholder="New password"
+          id="newPassword"
+          value={formData.newPassword} // Set value to the new password
+          className="border p-3 rounded-lg"
+        />
 
         <button
           onClick={handleSubmit}

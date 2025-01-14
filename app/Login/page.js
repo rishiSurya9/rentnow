@@ -75,9 +75,9 @@ const page = () => {
 
 
   return (
-   <div onSubmit={handleSubmit} className='p-3 max-w-lg mx-auto my-5 bg-red-100 shadow-xl'>
+   <div className='p-3 max-w-lg mx-auto my-5 bg-red-100 shadow-xl'>
       <h1 className='text-center font-bold text-2xl text-blue-600'>Login</h1>
-      <form className='flex flex-col gap-4 p-4'>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4 p-4'>
        
         <input
           type="email"
@@ -93,7 +93,7 @@ const page = () => {
           className='border-2 border-red-500 rounded-lg p-2 focus:border-red-600'
           onChange={handleChange}
         />
-        <button  disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
+        <button  disabled={loading}  type="submit" className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
         {loading ? 'Loading...' : 'Login'}
         </button>
         <OAuth/>

@@ -27,8 +27,7 @@ const ProfilePage = () => {
       setFormData({
         username: currentUser.username,
         email: currentUser.email,
-        oldPassword: "",
-        newPassword: "",
+        password: currentUser.password,
       });
     }
   }, [currentUser]);
@@ -116,19 +115,12 @@ const ProfilePage = () => {
         <input
           onChange={handleChange}
           type="password"
-          placeholder="Old password"
-          id="oldPassword"
-          value={formData.oldPassword}
+          placeholder="password"
+          id="password"
+          value={formData.password}
           className="border p-3 rounded-lg"
         />
-        <input
-          onChange={handleChange}
-          type="password"
-          placeholder="New password"
-          id="newPassword"
-          value={formData.newPassword}
-          className="border p-3 rounded-lg"
-        />
+       
 
         <button
           onClick={handleSubmit}

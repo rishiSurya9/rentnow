@@ -1,7 +1,7 @@
 "use client"
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import dotenv from 'dotenv';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 
 
 export default function RootLayout({ children }) {
+  dotenv.config();
   return (
     
     <html lang="en">

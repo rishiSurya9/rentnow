@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.FIRE_BASE_API ,
+  apiKey: process.env.NEXT_PUBLIC_FIRE_BASE_API ,
   authDomain: "rentnow-4c635.firebaseapp.com",
   projectId: "rentnow-4c635",
   storageBucket: "rentnow-4c635.firebasestorage.app",

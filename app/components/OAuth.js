@@ -2,10 +2,14 @@ import {GoogleAuthProvider, getAuth , signInWithPopup } from 'firebase/auth';
 import { app } from '../firebase.js';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice.js';
+import { useRouter } from 'next/navigation';
 export const OAuth = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const handleGoogleClick = async () => {
         try{
+            console.log("FirebaseAPI Key:", firebaseApiKey);
+
             const provider = new GoogleAuthProvider();
             const auth = getAuth(app);
             const result = await signInWithPopup(auth, provider);
@@ -19,6 +23,7 @@ export const OAuth = () => {
             });
             const data = await res.json();
             dispatch(signInSuccess(data));
+            router.push('/');
         } catch(error) {
             console.log(error);
         }

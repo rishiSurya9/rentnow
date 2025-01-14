@@ -1,15 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux"; // Import to access the Redux state
 
 const ProfilePage = () => {
-  const [formData, setFormData] = useState({});
+  // Access the current user from Redux state
+  const { currentUser } = useSelector((state) => state.user);
+  
+  const [formData, setFormData] = useState({
+    username: currentUser?.username || "",
+    email: currentUser?.email || "",
+    oldPassword: "",
+    newPassword: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    // Populate form data with the current user when the component mounts
+    if (currentUser) {
+      setFormData({
+        username: currentUser.username,
+        email: currentUser.email,
+        oldPassword: "",
+        newPassword: "",
+      });
+    }
+  }, [currentUser]);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,7 +44,7 @@ const ProfilePage = () => {
     e.preventDefault();
     setLoading(true);
 
-    toast.success('Information Updated!', {
+    toast.success("Information Updated!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -30,9 +52,10 @@ const ProfilePage = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      onClick: ()=>console.log('clicked'),
+      onClick: () => console.log("clicked"),
       theme: "light",
-      });
+    });
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API}/api/auth/update`,
@@ -61,27 +84,24 @@ const ProfilePage = () => {
     }
   };
 
-
- 
-
   return (
     <div className="p-3 max-w-lg mx-auto bg-red-100 shadow-xl rounded-lg mt-6">
-      <h1 className="text-3xl font-bold text-center my-7  text-red-600">Profile</h1>
+      <h1 className="text-3xl font-bold text-center my-7 text-red-600">Profile</h1>
 
-      <form className="flex flex-col gap-4 ">
+      <form className="flex flex-col gap-4">
         <img
           src="https://picsum.photos/200"
           alt="profile"
           className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center "
         />
 
-        {/* <label htmlFor="username">Username</label> */}
         <input
           onChange={handleChange}
           type="text"
           placeholder="Username"
           id="username"
-          className="border-black p-3 rounded-lg "
+          value={formData.username} // Set value to the current username
+          className="border-black p-3 rounded-lg"
         />
 
         <input
@@ -89,6 +109,7 @@ const ProfilePage = () => {
           type="email"
           placeholder="Email"
           id="email"
+          value={formData.email} // Set value to the current email
           className="border p-3 rounded-lg"
         />
 
@@ -97,6 +118,7 @@ const ProfilePage = () => {
           type="password"
           placeholder="Old password"
           id="oldPassword"
+          value={formData.oldPassword}
           className="border p-3 rounded-lg"
         />
         <input
@@ -104,6 +126,7 @@ const ProfilePage = () => {
           type="password"
           placeholder="New password"
           id="newPassword"
+          value={formData.newPassword}
           className="border p-3 rounded-lg"
         />
 
@@ -113,14 +136,10 @@ const ProfilePage = () => {
           disabled={loading}
         >
           {loading ? "Loading..." : "Update"}
-
         </button>
-        {/* <button onClick={notify}>Show Toast</button> */}
       </form>
 
-      {error && (
-        <p className="text-red-500 text-center mt-4">{error}</p>
-      )}
+      {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
       <div className="flex justify-between mt-4">
         <span className="text-sm text-gray-500 cursor-pointer font-bold">

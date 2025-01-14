@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { signInStart, signInSuccess, signInFailure  } from '../redux/user/userSlice';
 
 
 
@@ -12,6 +14,7 @@ const page = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,6 +25,7 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(signInStart());
     setLoading(true);
     try {
       const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, 
@@ -35,12 +39,12 @@ const page = () => {
         }
       );
       const data = await res.json();
-      console.log(data);
       if (!res.ok) {
         setLoading(false);
         setError(data.message || 'An error occurred');
         return;
       }
+      dispatch(signInSuccess(data));
       notify();
       router.push('/');
       setLoading(false);
@@ -48,6 +52,7 @@ const page = () => {
     } catch (error) {
       setLoading(false);
       setError(error.message);
+      dispatch(signInFailure(error.message));
     }
   };
 

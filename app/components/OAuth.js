@@ -24,7 +24,9 @@ export const OAuth = () => {
                     email: result.user.email,
                     photo: result.user.photoURL, }),
             });
-            const data = await res.json();
+            const rawData = await res.text(); // Use .text() to get raw response as a string
+            console.log('Raw response:', rawData); // Log raw response to see what is being returned
+            const data = JSON.parse(rawData); 
             console.log(data);
             dispatch(signInSuccess(data));
             router.push('/');

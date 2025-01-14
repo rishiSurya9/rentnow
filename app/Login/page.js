@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure  } from '../redux/user/userSlice';
+import {OAuth } from '../components/OAuth.js'
 
 
 
@@ -95,6 +96,7 @@ const page = () => {
         <button  disabled={loading} className=' bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-90'>
         {loading ? 'Loading...' : 'Login'}
         </button>
+        <OAuth/>
       </form>
       <div className='flex justify-center items-center gap-4'>
         <p>Don't have an account? <Link href='/signup' className='text-red-800 underline'>Signup</Link></p>

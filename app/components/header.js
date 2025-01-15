@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   // const { user } = useSelector((state) => state.auth);
-  const { currentUser } = useEffect((state) => state.user);
   const [menuVisible, setMenuVisible] = useState(false);
 
   const ShowMenu = () => {
@@ -70,19 +69,14 @@ const Header = () => {
             </Link>
 
             <Link href="/signup">
-              {currentUser ? (
-                <img src="currentUser.avatar" alt="profile" />
-              ) : (
                 <li className="md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300">
                   Signup
                 </li>
-              )}
-              ;
             </Link>
           </ul>
         </div>
 
-        {/* <div  className='flex justify-between items-center max-w-6xl mx-auto p-3  flex-1'>
+        {/* <div  className='flex jstify-between items-center max-w-6xl mx-auto p-3  flex-1'>
           <div className='flex items-center gap-4 flex-1 justify-end'>
             <h2>all customer </h2>
 

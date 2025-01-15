@@ -28,6 +28,7 @@ const ProfilePage = () => {
         email: currentUser.email,
         oldPassword: "", // Reset oldPassword and newPassword
         newPassword: "",
+        avatar: currentUser.avatar,
       });
     }
   }, [currentUser]);
@@ -89,7 +90,7 @@ const ProfilePage = () => {
 
       <form className="flex flex-col gap-4">
         <img
-          src="https://picsum.photos/200"
+          src= {formData.avatar}
           alt="profile"
           className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center "
         />

@@ -146,7 +146,7 @@ const ProfilePage = () => {
         <span className="text-sm text-gray-500 cursor-pointer font-bold">
           Delete Account
         </span>
-        <Link href="/signup">
+        <Link href="/Login">
           <span className="text-sm text-gray-500 cursor-pointer font-bold">
             Login
           </span>

@@ -7,11 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import { persistor, store } from './redux/store';
 import { PersistGate } from "redux-persist/integration/react";
+// import profile from "./Profile/page";
+// import { Route } from "react-router-dom";
+// import Router from "next/router";
 
-import privateRoute from "./components/privateRoute";
+// import privateRoute from "./components/privateRoute";
 
 import Navbar from "./components/header";
-import { Route } from "react-router-dom";
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +30,10 @@ const geistMono = Geist_Mono({
 
 
 export default function RootLayout({ children }) {
+  
   dotenv.config();
+
+  
   return (
     
     <html lang="en">
@@ -43,10 +50,10 @@ export default function RootLayout({ children }) {
         {children}
         <ToastContainer />
 
-        <Route element={<privateRoute/>}>
-          <Route path="/profile" element={<ProfilePage />} />
-        </Route>
-        
+       
+
+      
+
         </PersistGate>
         </Provider>
       </body>

@@ -8,7 +8,10 @@ import { Provider } from 'react-redux';
 import { persistor, store } from './redux/store';
 import { PersistGate } from "redux-persist/integration/react";
 
+import privateRoute from "./components/privateRoute";
+
 import Navbar from "./components/header";
+import { Route } from "react-router-dom";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +42,11 @@ export default function RootLayout({ children }) {
          <Navbar/>
         {children}
         <ToastContainer />
+
+        <Route element={<privateRoute/>}>
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
+        
         </PersistGate>
         </Provider>
       </body>

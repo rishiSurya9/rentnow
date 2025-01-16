@@ -86,7 +86,7 @@ const Header = () => {
             )}
             </Link>
            
-         ; </ul>
+          </ul>
         </div>
 
         {/* <div  className='flex jstify-between items-center max-w-6xl mx-auto p-3  flex-1'>

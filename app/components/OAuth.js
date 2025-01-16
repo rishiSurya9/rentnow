@@ -44,7 +44,7 @@ export const OAuth = () => {
         </button> */}
       <button
         onClick={handleGoogleClick}
-        className="flex items-center  gap-2 bg-white text-black hover:bg-gray-100 font-bold py-1 px-4 rounded-lg disabled:opacity-90  flex-1 mx-auto p-3 w-[450px] justify-center  border border-white"
+        className="flex items-center  gap-2 bg-white text-black hover:bg-gray-100 font-bold py-1 px-4 rounded-lg disabled:opacity-90  flex-1 mx-auto p-3 w-[auto]  md:w-[450px] justify-center  border border-white"
       >
         <svg
           className="w-7 h-auto  justify-center items-center  "

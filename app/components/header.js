@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 const Header = () => {
   // const { user } = useSelector((state) => state.auth);
   const [menuVisible, setMenuVisible] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
+    
+  
 
   const ShowMenu = () => {
     setMenuVisible(!menuVisible); // Toggle the menu visibility
@@ -69,11 +72,20 @@ const Header = () => {
             </Link>
 
             <Link href="/signup">
-                <li className="md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300">
+            {currentUser ?(
+             <img
+             src= {currentUser.avatar}
+             alt="profile"
+             className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center "
+           />
+            ):(
+              <li className="md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300">
                   Signup
                 </li>
+            )}
             </Link>
-          </ul>
+           
+         ; </ul>
         </div>
 
         {/* <div  className='flex jstify-between items-center max-w-6xl mx-auto p-3  flex-1'>

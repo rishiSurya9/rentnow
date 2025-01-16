@@ -71,12 +71,13 @@ const Header = () => {
               </li>
             </Link>
 
-            <Link href="/signup">
+            <Link href="/profile">
             {currentUser ?(
              <img
+             
              src= {currentUser.avatar}
              alt="profile"
-             className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center "
+             className="rounded-full mx-auto h-7 w-7 object-cover cursor-pointer self-center "
            />
             ):(
               <li className="md:text-white hover:text-lg  hover:underline inline-block transition-all duration-300">

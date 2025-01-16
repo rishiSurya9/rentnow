@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux"; // Import to access the Redux state
+import { useRef,fileRef } from "react";
 
 const ProfilePage = () => {
   // Access the current user from Redux state
@@ -84,12 +85,15 @@ const ProfilePage = () => {
     }
   };
 
+  const fileRef = useRef(null);
   return (
     <div className="p-3 max-w-lg mx-auto bg-red-100 shadow-xl rounded-lg mt-6">
       <h1 className="text-3xl font-bold text-center my-7 text-red-600">Profile</h1>
 
       <form className="flex flex-col gap-4">
+        <input type="file"  ref={fileRef} hidden accept="image/*"/>
         <img
+          onClick={() => fileRef.current.click()}
           src= {formData.avatar}
           alt="profile"
           className="rounded-full mx-auto h-24 w-24 object-cover cursor-pointer self-center "

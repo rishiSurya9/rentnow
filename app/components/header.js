@@ -71,7 +71,7 @@ const Header = () => {
               </li>
             </Link>
 
-            <Link href="/profile">
+            <Link href="/signup">
             {currentUser ?(
              <img
              

@@ -7,11 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-import profile from "./Profile/page";
-import { Route, Routes } from "react-router-dom";
-import Router from "next/router";
 
-import privateRoute from "./components/privateRoute";
+
+// import privateRoute from "./components/privateRoute";
 
 import Navbar from "./components/header";
 

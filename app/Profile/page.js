@@ -43,10 +43,8 @@ const ProfilePage = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
 
+  const notify = () =>{
     toast.success("Information Updated!", {
       position: "top-right",
       autoClose: 5000,
@@ -58,6 +56,15 @@ const ProfilePage = () => {
       onClick: () => console.log("clicked"),
       theme: "light",
     });
+  }
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+   
 
     try {
       const res = await fetch(
@@ -78,6 +85,7 @@ const ProfilePage = () => {
         setError(data.message || "An error occurred");
         return;
       }
+      notify();
       router.push("/");
       setLoading(false);
       setError(null);
@@ -92,7 +100,7 @@ const ProfilePage = () => {
     <div className="p-3 max-w-lg mx-auto bg-red-100 shadow-xl rounded-lg mt-6">
       <h1 className="text-3xl font-bold text-center my-7 text-red-600">Profile</h1>
 
-      <form className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input type="file"  ref={fileRef} hidden accept="image/*"/>
         <img
           onClick={() => fileRef.current.click()}
@@ -138,7 +146,7 @@ const ProfilePage = () => {
         />
 
         <button
-          onClick={handleSubmit}
+          
           className="bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-85"
           disabled={loading}
         >

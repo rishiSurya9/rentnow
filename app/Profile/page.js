@@ -113,7 +113,7 @@ const ProfilePage = () => {
           type="text"
           placeholder="Username"
           id="username"
-          value={formData.username} // Set value to the current username
+          value={currentUser.username} // Set value to the current username
           className="border-black p-3 rounded-lg"
         />
 

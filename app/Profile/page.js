@@ -63,12 +63,9 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-   
-
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser._id}`,
+        `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser.id}`,
         {
           method: "POST",
           credentials: "include",

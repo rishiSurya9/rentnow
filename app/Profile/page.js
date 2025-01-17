@@ -28,8 +28,9 @@ const ProfilePage = () => {
       setFormData({
         id:currentUser._id,
         username: currentUser.username,
-        email: currentUser.email, // Reset oldPassword and newPassword
-        password: "",
+        email: currentUser.email,
+        oldPassword: "", // Reset oldPassword and newPassword
+        newPassword: "",
         avatar: currentUser.avatar,
       });
     }
@@ -63,7 +64,6 @@ const ProfilePage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log(currentUser._id);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser._id}`,
 
@@ -112,7 +112,7 @@ const ProfilePage = () => {
           type="text"
           placeholder="Username"
           id="username"
-          value={currentUser.username} // Set value to the current username
+          value={formData.username} // Set value to the current username
           className="border-black p-3 rounded-lg"
         />
 
@@ -125,14 +125,21 @@ const ProfilePage = () => {
           className="border p-3 rounded-lg"
         />
 
-       
+        <input
+          onChange={handleChange}
+          type="password"
+          placeholder="Old password"
+          id="oldPassword"
+          value={formData.oldPassword} // Set value to the old password
+          className="border p-3 rounded-lg"
+        />
 
         <input
           onChange={handleChange}
           type="password"
-          placeholder="password"
-          id="password"
-          value={formData.password} // Set value to the new password
+          placeholder="New password"
+          id="newPassword"
+          value={formData.newPassword} // Set value to the new password
           className="border p-3 rounded-lg"
         />
 

@@ -11,6 +11,7 @@ const ProfilePage = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
+    id:currentUser?.id || "",
     username: currentUser?.username || "",
     email: currentUser?.email || "",
     oldPassword: "",

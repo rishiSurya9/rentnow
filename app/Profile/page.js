@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
-    id:currentUser?.id || "",
+    id:currentUser?._id || currentUser._id,
     username: currentUser?.username || "",
     email: currentUser?.email || "",
     oldPassword: "",
@@ -26,7 +26,7 @@ const ProfilePage = () => {
     // Populate form data with the current user when the component mounts
     if (currentUser) {
       setFormData({
-        id:currentUser.id,
+        id:currentUser._id,
         username: currentUser.username,
         email: currentUser.email,
         oldPassword: "", // Reset oldPassword and newPassword
@@ -65,7 +65,8 @@ const ProfilePage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser.id}`,
+        `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser._id}`,
+
         {
           method: "POST",
           credentials: "include",

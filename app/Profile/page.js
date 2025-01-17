@@ -64,6 +64,7 @@ const ProfilePage = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log(currentUser._id);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser._id}`,
 

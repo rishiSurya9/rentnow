@@ -94,40 +94,24 @@ const ProfilePage = () => {
   };
 
 
-  const handleDeleteUser = async () => {
+  const handleDeleteUser = async ()=>{
     try {
-     
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-  
-
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,{
+        method: "DELETE",
+       
+        });
       const data = await res.json();
-  
-     
-      if (data.success === false) {
-        console.error("Failed to delete user:", data.message); // Log error message
-        alert(`Error: ${data.message}`); // Optionally show an alert
+
+      if(!res.ok){
+        setError(data.message || "An error occurred");
         return;
       }
-  
-      // Success: Notify the user and redirect
-      console.log("User deleted successfully:", data);
-      alert("User deleted successfully!");
-      window.location.href = "/"; // Redirect to the homepage or another page
+      router.push("/");
+      setError(null)
     } catch (error) {
-      // Log unexpected errors
-      console.error("An unexpected error occurred:", error.message);
-      alert(`An error occurred: ${error.message}`); // Optionally show an alert
+      setError(error.message)
     }
-  };
-  
+  }
 
   const fileRef = useRef(null);
   return (
@@ -191,7 +175,7 @@ const ProfilePage = () => {
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
       <div className="flex justify-between mt-4">
-        <span onClick={handleDeleteUser} className="text-sm text-gray-500 cursor-pointer font-bold">
+        <span onClick={HandleDeleteUser} className="text-sm text-gray-500 cursor-pointer font-bold">
           Delete Account
         </span>
         <Link href="/Login">

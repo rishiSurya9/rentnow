@@ -175,7 +175,7 @@ const ProfilePage = () => {
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
       <div className="flex justify-between mt-4">
-        <span onClick={HandleDeleteUser} className="text-sm text-gray-500 cursor-pointer font-bold">
+        <span onClick={handleDeleteUser} className="text-sm text-gray-500 cursor-pointer font-bold">
           Delete Account
         </span>
         <Link href="/Login">

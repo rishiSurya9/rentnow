@@ -28,9 +28,8 @@ const ProfilePage = () => {
       setFormData({
         id:currentUser._id,
         username: currentUser.username,
-        email: currentUser.email,
-        oldPassword: "", // Reset oldPassword and newPassword
-        newPassword: "",
+        email: currentUser.email, // Reset oldPassword and newPassword
+        password: "",
         avatar: currentUser.avatar,
       });
     }
@@ -126,21 +125,14 @@ const ProfilePage = () => {
           className="border p-3 rounded-lg"
         />
 
-        <input
-          onChange={handleChange}
-          type="password"
-          placeholder="Old password"
-          id="oldPassword"
-          value={formData.oldPassword} // Set value to the old password
-          className="border p-3 rounded-lg"
-        />
+       
 
         <input
           onChange={handleChange}
           type="password"
-          placeholder="New password"
-          id="newPassword"
-          value={formData.newPassword} // Set value to the new password
+          placeholder="password"
+          id="password"
+          value={formData.password} // Set value to the new password
           className="border p-3 rounded-lg"
         />
 

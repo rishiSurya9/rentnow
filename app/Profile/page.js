@@ -93,6 +93,42 @@ const ProfilePage = () => {
     }
   };
 
+
+  const handleDeleteUser = async () => {
+    try {
+     
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+
+      const data = await res.json();
+  
+     
+      if (data.success === false) {
+        console.error("Failed to delete user:", data.message); // Log error message
+        alert(`Error: ${data.message}`); // Optionally show an alert
+        return;
+      }
+  
+      // Success: Notify the user and redirect
+      console.log("User deleted successfully:", data);
+      alert("User deleted successfully!");
+      window.location.href = "/"; // Redirect to the homepage or another page
+    } catch (error) {
+      // Log unexpected errors
+      console.error("An unexpected error occurred:", error.message);
+      alert(`An error occurred: ${error.message}`); // Optionally show an alert
+    }
+  };
+  
+
   const fileRef = useRef(null);
   return (
     <div className="p-3 max-w-lg mx-auto bg-red-100 shadow-xl rounded-lg mt-6">
@@ -155,7 +191,7 @@ const ProfilePage = () => {
       {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
       <div className="flex justify-between mt-4">
-        <span className="text-sm text-gray-500 cursor-pointer font-bold">
+        <span onClick={handleDeleteUser} className="text-sm text-gray-500 cursor-pointer font-bold">
           Delete Account
         </span>
         <Link href="/Login">

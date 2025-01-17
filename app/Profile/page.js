@@ -25,6 +25,7 @@ const ProfilePage = () => {
     // Populate form data with the current user when the component mounts
     if (currentUser) {
       setFormData({
+        id:currentUser.id,
         username: currentUser.username,
         email: currentUser.email,
         oldPassword: "", // Reset oldPassword and newPassword

@@ -100,8 +100,6 @@ const ProfilePage = () => {
         method: "DELETE",
         credentials: "include",
 
-
-       
         });
       const data = await res.json();
 

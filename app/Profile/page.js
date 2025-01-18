@@ -98,6 +98,9 @@ const ProfilePage = () => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,{
         method: "DELETE",
+        credentials: "include",
+
+        
        
         });
       const data = await res.json();

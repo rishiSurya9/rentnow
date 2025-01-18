@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 function page() {
+  const [listdata, setListData] = useState(0);
+  const handleChange = (e) => {
+    setListData({
+      ...listdata,
+      [e.target.id]: e.target.value,
+    });
+    console.log(setListData);
+  };
+
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
@@ -9,6 +18,7 @@ function page() {
           <input
             type="text"
             placeholder="name"
+            
             className="border p-3 rounded-lg"
             id="name"
             maxLength="62"

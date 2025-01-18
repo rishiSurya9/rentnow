@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
-    id:currentUser?._id || currentUser._id,
+    id:currentUser?._id || " ",
     username: currentUser?.username || "",
     email: currentUser?.email || "",
     oldPassword: "",
@@ -100,7 +100,7 @@ const ProfilePage = () => {
         method: "DELETE",
         credentials: "include",
 
-        
+
        
         });
       const data = await res.json();

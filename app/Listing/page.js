@@ -2,15 +2,8 @@
 import React, { useState } from "react";
 
 function page() {
-  const [listdata, setListData] = useState(0);
-  const handleChange = (e) => {
-    setListData({
-      ...listdata,
-      [e.target.id]: e.target.value,
-    });
-    console.log(listdata);
-  };
-
+  const [files , setFiles] = useState([]);
+  console.log(files);
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
@@ -126,7 +119,7 @@ function page() {
             </p>
 
             <div className="flex gap-4">
-                <input className="p-3 border border-gray-300 rounded w-full " type="file" id="images" accept="image/*" multiple />
+                <input onChange={(e)=>setFiles(e.target.files)} className="p-3 border border-gray-300 rounded w-full " type="file" id="images" accept="image/*" multiple />
                 <button className="p-3 text-green-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80">Upload</button>
             </div>
         <button className="p-3 bg-green-800 text-white rounded-lg uppercase hover:shadow-lg">Create Listing</button>

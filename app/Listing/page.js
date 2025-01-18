@@ -7,7 +7,7 @@ function page() {
       ...listdata,
       [e.target.id]: e.target.value,
     });
-    console.log(setListData);
+    console.log(listdata);
   };
 
   return (

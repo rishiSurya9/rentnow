@@ -3,7 +3,57 @@ import React, { useState } from "react";
 
 function page() {
   const [files , setFiles] = useState([]);
-  console.log(files);
+  const [uploading, setUploading] = useState(false);
+  const handleImageSubmit = async  (e) => {
+    if(files.length > 0 && files.length < 6){
+      const promises = [];
+      setUploading(true);
+      for(let i = 0; i < files.length; i++){
+        promises.push(uploadFile(files[i]));
+      }
+      try {
+        const results = await Promise.all(promises);
+        console.log("Uploaded images:", results); // Contains the URLs of uploaded images
+        setUploading(false); // Hide loading
+        alert("Images uploaded successfully!");
+      } catch (error) {
+        console.error("Error uploading images:", error);
+        setUploading(false);
+        alert("Error uploading images");
+      }
+    } else {
+      alert("Please select between 1 to 6 images.");
+    }
+  };
+  const uploadFile = async (file) => {
+        return new Promise((resolve, reject) => {
+          return new Promise(async (resolve, reject) => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "rent_places"); // Replace with your Cloudinary unsigned upload preset
+            formData.append("cloud_name", "dx5kkvi7t"); // Replace with your Cloudinary cloud name
+      
+            try {
+              const response = await fetch(
+                `https://api.cloudinary.com/v1_1/dx5kkvi7t/image/upload`, // Replace with your Cloudinary cloud name
+                {
+                  method: "POST",
+                  body: formData,
+                }
+              );
+      
+              if (response.ok) {
+                const data = await response.json();
+                resolve(data.secure_url); // The URL of the uploaded image
+              } else {
+                reject("Failed to upload image");
+              }
+            } catch (error) {
+              reject(error);
+            }
+          });
+        });
+  };
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
@@ -120,7 +170,14 @@ function page() {
 
             <div className="flex gap-4">
                 <input onChange={(e)=>setFiles(e.target.files)} className="p-3 border border-gray-300 rounded w-full " type="file" id="images" accept="image/*" multiple />
-                <button className="p-3 text-green-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80">Upload</button>
+                <button
+              type="button"
+              onClick={handleImageSubmit}
+              className="p-3 text-green-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80"
+              disabled={uploading} // Disable button during upload
+            >
+              {uploading ? "Uploading..." : "Upload"}
+            </button>
             </div>
         <button className="p-3 bg-green-800 text-white rounded-lg uppercase hover:shadow-lg">Create Listing</button>
         </div>

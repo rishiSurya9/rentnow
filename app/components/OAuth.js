@@ -9,7 +9,6 @@ export const OAuth = () => {
   const router = useRouter();
   const handleGoogleClick = async () => {
     try {
-      console.log(process.env.NEXT_PUBLIC_FIRE_BASE_API);
 
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);

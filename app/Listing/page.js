@@ -25,34 +25,33 @@ function page() {
       alert("Please select between 1 to 6 images.");
     }
   };
-  const uploadFile = async (file) => {
-        return new Promise((resolve, reject) => {
-          return new Promise(async (resolve, reject) => {
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("upload_preset", "rent_places"); // Replace with your Cloudinary unsigned upload preset
-            formData.append("cloud_name", "dx5kkvi7t"); // Replace with your Cloudinary cloud name
-      
-            try {
-              const response = await fetch(
-                `https://api.cloudinary.com/v1_1/dx5kkvi7t/image/upload`, // Replace with your Cloudinary cloud name
-                {
-                  method: "POST",
-                  body: formData,
-                }
-              );
-      
-              if (response.ok) {
-                const data = await response.json();
-                resolve(data.secure_url); // The URL of the uploaded image
-              } else {
-                reject("Failed to upload image");
-              }
-            } catch (error) {
-              reject(error);
-            }
-          });
-        });
+  const uploadFile = async (file) => {   const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "rent_places"); 
+    formData.append("cloud_name", "dx5kkvi7t");
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dx5kkvi7t/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        return data.secure_url;
+      } else {
+        throw new Error("Failed to upload image");
+      }
+    } catch (error) {
+      throw error; 
+    }
+  };
+  const handleFileChange = (e) => {
+    const fileArray = Array.from(e.target.files); 
+    setFiles(fileArray);
   };
   return (
     <main className="p-3 max-w-4xl mx-auto">
@@ -169,7 +168,7 @@ function page() {
             </p>
 
             <div className="flex gap-4">
-                <input onChange={(e)=>setFiles(e.target.files)} className="p-3 border border-gray-300 rounded w-full " type="file" id="images" accept="image/*" multiple />
+                <input onChange={handleFileChange} className="p-3 border border-gray-300 rounded w-full " type="file" id="images" accept="image/*" multiple />
                 <button
               type="button"
               onClick={handleImageSubmit}

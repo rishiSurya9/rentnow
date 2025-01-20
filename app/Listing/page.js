@@ -4,6 +4,9 @@ import React, { useState } from "react";
 function page() {
   const [files , setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState(false);
+  const [imageUploadError, setImageUploadError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [pageInfo, setPageInfo] = useState({
     name: "",
     description: "",
@@ -52,6 +55,17 @@ function page() {
  const handleSubmit = async (e) => {
   e.preventDefault();
   try {
+    if (pageInfo.imageUrls.length === 0) {
+      setError("Please upload at least 1 image.");
+      return;
+    }
+    
+    if (pageInfo.offer && +pageInfo.regularPrice <= +pageInfo.discountPrice) {
+      setError("Regular price should be greater than discount price when an offer is applied.");
+      return;
+    }
+    setLoading(true);
+    setError(false);
     const res = await fetch(`${process.env.PUBLIC_API}/api/listing/create`, 
       {
         method: 'POST',
@@ -65,37 +79,45 @@ function page() {
     const data = await res.json();
     if (!res.ok) {
       console.log(data.message);
+      setLoading(false);
       return;
     }
+    setError(data.message);
   } catch (error) {
-    console.log(error);
+    setError(error.message);
+    setLoading(false);
   }
 };
-  const handleImageSubmit = async (e) => {
-    if (files.length > 0 && files.length < 6) {
-        const promises = [];
-        setUploading(true);
-        for (let i = 0; i < files.length; i++) {
-            promises.push(uploadFile(files[i]));
-        }
-        try {
-            const results = await Promise.all(promises);
-            setPageInfo({
-              ...pageInfo,
-              imageUrls: results // Update imageUrls in pageInfo state
-            })
-            console.log(pageInfo.imageUrls); // Log the image URLs
-            setUploading(false); // Hide loading
-            alert("Images uploaded successfully!");
-        } catch (error) {
-            console.error("Error uploading images:", error);
-            setUploading(false);
-            alert("Error uploading images");
-        }
-    } else {
-        alert("Please select between 1 to 6 images.");
+const handleImageSubmit = async () => {
+  const MAX_IMAGE_SIZE_MB = 2;
+  const isValidSize = files.every((file) => file.size <= MAX_IMAGE_SIZE_MB * 1024 * 1024);
+
+  if (!isValidSize) {
+    setImageUploadError(`Each image must be less than ${MAX_IMAGE_SIZE_MB}MB.`);
+    setUploading(false);
+    return;
+  }
+
+  if (files.length > 0 && files.length < 6) {
+    setUploading(true);
+    setImageUploadError(false);
+
+    const promises = files.map(uploadFile);
+    try {
+      const results = await Promise.all(promises);
+      setPageInfo((prevState) => ({ ...prevState, imageUrls: results }));
+      setFiles([]); // Clear files after upload
+      setUploading(false);
+      alert("Images uploaded successfully!");
+    } catch (error) {
+      setImageUploadError("Image upload failed.");
+      setUploading(false);
     }
-  };
+  } else {
+    setImageUploadError("You can only upload 6 images per listing.");
+  }
+};
+
 
   const uploadFile = async (file) => {  
      const formData = new FormData();
@@ -127,21 +149,17 @@ function page() {
     const fileArray = Array.from(e.target.files); 
     setFiles(fileArray);
   };
-  const removeImage = (index) => {
-    return () => {
-      const newArray = [...pageInfo.imageUrls];
-      newArray.splice(index, 1);
-      setPageInfo((prevState) => ({
-        ...prevState,
-        imageUrls: newArray,
-      }));
-    };
+  const removeImage = (index) => () => {
+    setPageInfo((prevState) => ({
+      ...prevState,
+      imageUrls: prevState.imageUrls.filter((_, i) => i !== index),
+    }));
   };
   
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
-      <form className="flex flex-col sm:flex-row gap-4" action="">
+      <form  onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4" action="">
         <div className="flex flex-col gap-4 flex-1">
           <input
             type="text"
@@ -265,6 +283,9 @@ function page() {
               {uploading ? "Uploading..." : "Upload"}
             </button>
             </div>
+            <p className='text-red-700 text-sm'>
+            {imageUploadError && imageUploadError}
+          </p>
             {
               pageInfo.imageUrls.length > 0 && pageInfo.imageUrls.map((url, index) => (
                <div key={url} className="flex justify-between p-3 border items-center gap-2">
@@ -273,7 +294,13 @@ function page() {
                 </div>
                 ))
             }
-        <button onClick={handleSubmit} type="submit" className="p-3 bg-green-800 text-white rounded-lg uppercase hover:shadow-lg">Create Listing</button>
+         <button
+            disabled={loading || uploading}
+            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+          >
+            {loading ? 'Creating...' : 'Create listing'}
+          </button>
+        {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>
 
       </form>

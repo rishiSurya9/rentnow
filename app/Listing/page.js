@@ -11,7 +11,7 @@ function page() {
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 0,
-    discountedPrice: 0,
+    discountPrice: 0,
     type:'rent',
     parking: false,
     furnished: false,
@@ -224,7 +224,7 @@ function page() {
             <div className="flex items-center gap-2">
               <input
                 type='number'
-                id="DiscountedPrice"
+                id="discountPrice"
               min="500" 
                 max="50000"
                 required

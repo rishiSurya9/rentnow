@@ -4,7 +4,9 @@ import React, { useState } from "react";
 function page() {
   const [files , setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
-  
+  const [formData, setFormData] = useState({
+    imageUrls: [],
+  });
   const handleImageSubmit = async  (e) => {
     if(files.length > 0 && files.length < 6){
       const promises = [];

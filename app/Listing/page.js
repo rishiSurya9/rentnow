@@ -63,9 +63,10 @@ function page() {
         }
         try {
             const results = await Promise.all(promises);
-            const pageInfo = {
-                imageUrl: results // Store results URL in imageUrl of pageInfo
-            };
+            setPageInfo({
+              ...pageInfo,
+              imageUrls: results // Update imageUrls in pageInfo state
+            })
             console.log(pageInfo.imageUrl); // Log the image URLs
             setUploading(false); // Hide loading
             alert("Images uploaded successfully!");

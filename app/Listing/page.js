@@ -27,11 +27,14 @@ function page() {
         promises.push(uploadFile(files[i]));
       }
       try {
-        const results = await Promise.all(promises);
-        setPageInfo((prevState) => ({
-          ...prevState,
-          imageUrls: results,
-        }));
+        Promise.all(promises).then((results) => {
+          setPageInfo({
+            ...pageInfo,
+            imageUrls: results,
+          });
+        });
+        
+       
         console.log("Uploaded images:", pageInfo.imageUrls); // Contains the URLs of uploaded images
         setUploading(false); // Hide loading
         alert("Images uploaded successfully!");

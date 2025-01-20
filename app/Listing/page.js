@@ -82,6 +82,7 @@ const handleSubmit = async (e) => {
       setError(data.message);
     } else {
       setError(null);
+      console.log(data);
     }
   } catch (error) {
     setError(error.message);

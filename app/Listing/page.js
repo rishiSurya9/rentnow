@@ -49,11 +49,28 @@ function page() {
       });
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(pageInfo);
-  };
-
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await fetch(`${process.env.PUBLIC_API}/api/listing/create`, 
+      {
+        method: 'POST',
+        credentials: 'include', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pageInfo),
+      }
+    );
+    const data = await res.json();
+    if (!res.ok) {
+      console.log(data.message);
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
   const handleImageSubmit = async (e) => {
     if (files.length > 0 && files.length < 6) {
         const promises = [];

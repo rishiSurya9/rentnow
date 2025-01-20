@@ -20,7 +20,7 @@ function page() {
   });
 
   const handleChange = (e) => {
-    if (e.target.id === 'sale' || e.target.id === 'rent') {
+    if (e.target.id === 'sell' || e.target.id === 'rent') {
       setPageInfo({
         ...pageInfo,
         type: e.target.id,
@@ -143,13 +143,13 @@ function page() {
 
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
-              <input type="checkbox" id="sale" className="w-5 " onChange={handleChange} />
-              <span>Sell</span>
-            </div>
-            <div className="flex gap-2">
-              <input type="checkbox" id="rent" className="w-5 " onChange={handleChange} />
-              <span>Rent</span>
-            </div>
+  <input type="radio" id="sell" name="option" className="w-5" onChange={handleChange} />
+  <span>Sell</span>
+</div>
+<div className="flex gap-2">
+  <input type="radio" id="rent" name="option" className="w-5" onChange={handleChange} />
+  <span>Rent</span>
+</div>
             <div className="flex gap-2">
               <input type="checkbox" id="parking" className="w-5 " onChange={handleChange} />
               <span>Parking Spot</span>

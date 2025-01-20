@@ -121,8 +121,6 @@ function page() {
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="name"
-            maxLength="62"
-            minLength="10"
             required
           />
           <textarea
@@ -139,8 +137,6 @@ function page() {
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="address"
-            maxLength="62"
-            minLength="10"
             required
           />
 
@@ -196,8 +192,8 @@ function page() {
               <input
                 type="number"
                 id="regularPrice"
-                min="1" 
-                max="10"
+                min="500" 
+                max="50000"
                 required
                 onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
@@ -211,8 +207,8 @@ function page() {
               <input
                 type='number'
                 id="offerPrice"
-                min='1'
-                max="10"
+              min="500" 
+                max="50000"
                 required
                 onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
@@ -241,7 +237,7 @@ function page() {
               {uploading ? "Uploading..." : "Upload"}
             </button>
             </div>
-        <button className="p-3 bg-green-800 text-white rounded-lg uppercase hover:shadow-lg">Create Listing</button>
+        <button onClick={handleSubmit} type="submit" className="p-3 bg-green-800 text-white rounded-lg uppercase hover:shadow-lg">Create Listing</button>
         </div>
 
       </form>

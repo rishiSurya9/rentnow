@@ -18,6 +18,7 @@ function page() {
     offer: false,
     imageUrls: [],
   });
+
   const handleChange = (e) => {
     if (e.target.id === 'sale' || e.target.id === 'rent') {
       setPageInfo({
@@ -49,7 +50,7 @@ function page() {
     }
     console.log(pageInfo);
   };
-  
+
   const handleImageSubmit = async (e) => {
     if (files.length > 0 && files.length < 6) {
         const promises = [];
@@ -73,7 +74,8 @@ function page() {
     } else {
         alert("Please select between 1 to 6 images.");
     }
-};
+  };
+
   const uploadFile = async (file) => {  
      const formData = new FormData();
     formData.append("file", file);
@@ -99,10 +101,12 @@ function page() {
       throw error; 
     }
   };
+
   const handleFileChange = (e) => {
     const fileArray = Array.from(e.target.files); 
     setFiles(fileArray);
   };
+
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
@@ -111,16 +115,17 @@ function page() {
           <input
             type="text"
             placeholder="name"
-            
+            onChange={handleChange}
             className="border p-3 rounded-lg"
             id="name"
             maxLength="62"
-            minleng="10"
+            minLength="10"
             required
           />
           <textarea
             type="text"
             placeholder="description"
+            onChange={handleChange}
             className="border p-3 rounded-lg"
             id="description"
             required
@@ -128,32 +133,33 @@ function page() {
           <input
             type="text"
             placeholder="address"
+            onChange={handleChange}
             className="border p-3 rounded-lg"
             id="address"
             maxLength="62"
-            minleng="10"
+            minLength="10"
             required
           />
 
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
-              <input type="checkbox" id="sale" className="w-5 " />
+              <input type="checkbox" id="sale" className="w-5 " onChange={handleChange} />
               <span>Sell</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="rent" className="w-5 " />
+              <input type="checkbox" id="rent" className="w-5 " onChange={handleChange} />
               <span>Rent</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="parkinng" className="w-5 " />
+              <input type="checkbox" id="parking" className="w-5 " onChange={handleChange} />
               <span>Parking Spot</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="furnished" className="w-5 " />
+              <input type="checkbox" id="furnished" className="w-5 " onChange={handleChange} />
               <span>Furnished</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="offer" className="w-5 " />
+              <input type="checkbox" id="offer" className="w-5 " onChange={handleChange} />
               <span>Offer</span>
             </div>
           </div>
@@ -166,6 +172,7 @@ function page() {
                 min='1'
                 max="10"
                 required
+                onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
               />
               <p>Beds</p>
@@ -177,6 +184,7 @@ function page() {
                 min="1"
                 max="10"
                 required
+                onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
               />
               <p>Baths</p>
@@ -188,6 +196,7 @@ function page() {
                 min="1" 
                 max="10"
                 required
+                onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
               />
               <div className=" flex flex-col items-center">
@@ -202,6 +211,7 @@ function page() {
                 min='1'
                 max="10"
                 required
+                onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
               />
               <div className=" flex flex-col items-center">

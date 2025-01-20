@@ -4,30 +4,34 @@ import React, { useState } from "react";
 function page() {
   const [files , setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [pageInfo, setPageInfo] = useState({
     imageUrls: [],
   });
-  const handleImageSubmit = async  (e) => {
-    if(files.length > 0 && files.length < 6){
-      const promises = [];
-      setUploading(true);
-      for(let i = 0; i < files.length; i++){
-        promises.push(uploadFile(files[i]));
-      }
-      try {
-        const results = await Promise.all(promises);
-        console.log("Uploaded images:", results); // Contains the URLs of uploaded images
-        setUploading(false); // Hide loading
-        alert("Images uploaded successfully!");
-      } catch (error) {
-        console.error("Error uploading images:", error);
-        setUploading(false);
-        alert("Error uploading images");
-      }
+  const handleImageSubmit = async (e) => {
+    if (files.length > 0 && files.length < 6) {
+        const promises = [];
+        setUploading(true);
+        for (let i = 0; i < files.length; i++) {
+            promises.push(uploadFile(files[i]));
+        }
+        try {
+            const results = await Promise.all(promises);
+            console.log("Uploaded images:", results); // Contains the URLs of uploaded images
+            const pageInfo = {
+                imageUrl: results // Store results URL in imageUrl of pageInfo
+            };
+            console.log(pageInfo.imageUrl); // Log the image URLs
+            setUploading(false); // Hide loading
+            alert("Images uploaded successfully!");
+        } catch (error) {
+            console.error("Error uploading images:", error);
+            setUploading(false);
+            alert("Error uploading images");
+        }
     } else {
-      alert("Please select between 1 to 6 images.");
+        alert("Please select between 1 to 6 images.");
     }
-  };
+};
   const uploadFile = async (file) => {  
      const formData = new FormData();
     formData.append("file", file);

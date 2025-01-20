@@ -52,7 +52,7 @@ function page() {
       });
     }
   };
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     if (pageInfo.imageUrls.length === 0) {
@@ -79,12 +79,13 @@ function page() {
     const data = await res.json();
     if (!res.ok) {
       console.log(data.message);
-      setLoading(false);
-      return;
+      setError(data.message);
+    } else {
+      setError(null);
     }
-    setError(data.message);
   } catch (error) {
     setError(error.message);
+  } finally {
     setLoading(false);
   }
 };
@@ -106,7 +107,7 @@ const handleImageSubmit = async () => {
     try {
       const results = await Promise.all(promises);
       setPageInfo((prevState) => ({ ...prevState, imageUrls: results }));
-      setFiles([]); // Clear files after upload
+      setFiles([]); 
       setUploading(false);
       alert("Images uploaded successfully!");
     } catch (error) {

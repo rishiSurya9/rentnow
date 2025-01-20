@@ -127,7 +127,17 @@ function page() {
     const fileArray = Array.from(e.target.files); 
     setFiles(fileArray);
   };
-
+  const removeImage = (index) => {
+    return () => {
+      const newArray = [...pageInfo.imageUrls];
+      newArray.splice(index, 1);
+      setPageInfo((prevState) => ({
+        ...prevState,
+        imageUrls: newArray,
+      }));
+    };
+  };
+  
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
@@ -255,6 +265,14 @@ function page() {
               {uploading ? "Uploading..." : "Upload"}
             </button>
             </div>
+            {
+              pageInfo.imageUrls.length > 0 && pageInfo.imageUrls.map((url, index) => (
+               <div key={url} className="flex justify-between p-3 border items-center gap-2">
+                <img src={url} alt="image" className="w-20 h-20 rounded-lg" />  
+                <button type="button" onClick={removeImage(index)} className="p-3 text-red-600 uppercase hover:opacity-75 rounded-lg" >Remove</button>
+                </div>
+                ))
+            }
         <button onClick={handleSubmit} type="submit" className="p-3 bg-green-800 text-white rounded-lg uppercase hover:shadow-lg">Create Listing</button>
         </div>
 

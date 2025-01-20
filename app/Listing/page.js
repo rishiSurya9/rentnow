@@ -5,8 +5,51 @@ function page() {
   const [files , setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [pageInfo, setPageInfo] = useState({
+    name: "",
+    description: "",
+    address: "",
+    bedrooms: 1,
+    bathrooms: 1,
+    regularPrice: 0,
+    offerPrice: 0,
+    type:'rent',
+    parking: false,
+    furnished: false,
+    offer: false,
     imageUrls: [],
   });
+  const handleChange = (e) => {
+    if (e.target.id === 'sale' || e.target.id === 'rent') {
+      setPageInfo({
+        ...pageInfo,
+        type: e.target.id,
+      });
+    }
+  
+    if (
+      e.target.id === 'parking' ||
+      e.target.id === 'furnished' ||
+      e.target.id === 'offer'
+    ) {
+      setPageInfo({
+        ...pageInfo,
+        [e.target.id]: e.target.checked,
+      });
+    }
+  
+    if (
+      e.target.type === 'number' ||
+      e.target.type === 'text' ||
+      e.target.type === 'textarea'
+    ) {
+      setPageInfo({
+        ...pageInfo,
+        [e.target.id]: e.target.value,
+      });
+    }
+    console.log(pageInfo);
+  };
+  
   const handleImageSubmit = async (e) => {
     if (files.length > 0 && files.length < 6) {
         const promises = [];
@@ -16,7 +59,6 @@ function page() {
         }
         try {
             const results = await Promise.all(promises);
-            console.log("Uploaded images:", results); // Contains the URLs of uploaded images
             const pageInfo = {
                 imageUrl: results // Store results URL in imageUrl of pageInfo
             };

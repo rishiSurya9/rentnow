@@ -4,21 +4,7 @@ import React, { useState } from "react";
 function page() {
   const [files , setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [pageInfo, setPageInfo] = useState({
-    name: "",
-    description: "",
-    address: "",
-    sale: false,
-    rent: false,
-    parking: false,
-    furnished: false,
-    offer: false,
-    bedrooms: 1,
-    bathrooms: 1,
-    regularPrice: 1,
-    offerPrice: 1,
-    imageUrls: [],
-  });
+  
   const handleImageSubmit = async  (e) => {
     if(files.length > 0 && files.length < 6){
       const promises = [];
@@ -27,15 +13,8 @@ function page() {
         promises.push(uploadFile(files[i]));
       }
       try {
-        Promise.all(promises).then((results) => {
-          setPageInfo({
-            ...pageInfo,
-            imageUrls: results,
-          });
-        });
-        
-       
-        console.log("Uploaded images:", pageInfo.imageUrls); // Contains the URLs of uploaded images
+        const results = await Promise.all(promises);
+        console.log("Uploaded images:", results); // Contains the URLs of uploaded images
         setUploading(false); // Hide loading
         alert("Images uploaded successfully!");
       } catch (error) {

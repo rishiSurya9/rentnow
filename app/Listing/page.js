@@ -84,7 +84,7 @@ function page() {
               ...pageInfo,
               imageUrls: results // Update imageUrls in pageInfo state
             })
-            console.log(pageInfo.imageUrl); // Log the image URLs
+            console.log(pageInfo.imageUrls); // Log the image URLs
             setUploading(false); // Hide loading
             alert("Images uploaded successfully!");
         } catch (error) {

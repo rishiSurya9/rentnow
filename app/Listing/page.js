@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 function page() {
+  const { currentUser } = useSelector((state) => state.user);
   const [files , setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
@@ -66,14 +68,17 @@ const handleSubmit = async (e) => {
     }
     setLoading(true);
     setError(false);
-    const res = await fetch(`${process.env.PUBLIC_API}/api/listing/create`, 
+   const res = await fetch(`${process.env.PUBLIC_API}/api/listing/create`, 
       {
         method: 'POST',
         credentials: 'include', 
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(pageInfo),
+        body: JSON.stringify({
+          ...pageInfo,
+          userRef: currentUser._id
+        }),
       }
     );
     const data = await res.json();
@@ -108,7 +113,6 @@ const handleImageSubmit = async () => {
     try {
       const results = await Promise.all(promises);
       setPageInfo((prevState) => ({ ...prevState, imageUrls: results }));
-      setFiles([]); 
       setUploading(false);
       alert("Images uploaded successfully!");
     } catch (error) {

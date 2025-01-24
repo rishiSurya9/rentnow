@@ -58,6 +58,24 @@ const ProfilePage = () => {
     });
   }
 
+  const getListing = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/listings/${currentUser._id}`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = await res.json();
+     if(res.ok){
+      console.log(data);
+     }
+     else {
+      console.log(data.message);
+     }
+    } catch (error) {
+      notify();
+      setLoading(false);
+    }
+  };
 
 
   const handleSubmit = async (e) => {
@@ -188,6 +206,9 @@ const ProfilePage = () => {
             Login
           </span>
         </Link>
+      </div>
+      <div className="flex justify-between mt-4">
+        <button type="button" onClick={getListing}>user Listings</button>
       </div>
     </div>
   );

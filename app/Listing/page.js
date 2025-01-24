@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from 'next/navigation';
 
 function page() {
   const { currentUser } = useSelector((state) => state.user);
@@ -9,6 +10,7 @@ function page() {
   const [error, setError] = useState(false);
   const [imageUploadError, setImageUploadError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const [pageInfo, setPageInfo] = useState({
     name: "",
     description: "",
@@ -56,7 +58,6 @@ function page() {
   };
 const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log(currentUser._id);
   if(!pageInfo.offer) {
     pageInfo.discountPrice = pageInfo.regularPrice;
   }
@@ -92,6 +93,7 @@ const handleSubmit = async (e) => {
     } else {
       setError(null);
       console.log(data);
+      router.push('/');
     }
   } catch (error) {
     setError(error.message);

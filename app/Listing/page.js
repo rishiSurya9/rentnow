@@ -73,7 +73,7 @@ const handleSubmit = async (e) => {
     }
     setLoading(true);
     setError(false);
-   const res = await fetch(`${process.env.PUBLIC_API}/api/listing/create`, 
+   const res = await fetch(`${process.env.PUBLIC_API}/api/listing/create/${currentUser._id}`, 
       {
         method: 'POST',
         credentials: 'include', 

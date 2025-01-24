@@ -57,6 +57,9 @@ function page() {
 const handleSubmit = async (e) => {
   e.preventDefault();
   console.log(currentUser._id);
+  if(!pageInfo.offer) {
+    pageInfo.discountPrice = pageInfo.regularPrice;
+  }
   try {
     if (pageInfo.imageUrls.length === 0) {
       setError("Please upload at least 1 image.");

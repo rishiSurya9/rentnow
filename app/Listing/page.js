@@ -256,21 +256,23 @@ const handleImageSubmit = async () => {
                 <span>($/month)</span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <input
-                type='number'
-                id="discountPrice"
-              min="500" 
-                max="50000"
-                required
-                onChange={handleChange}
-                className="p-2 border border-gray-300 rounded-lg"
-              />
-              <div className=" flex flex-col items-center">
-                <p>Offer price</p>
-                <span>($/month)</span>
+            {pageInfo.offer && (
+              <div className="flex items-center gap-2">
+                <input
+                  type='number'
+                  id="discountPrice"
+                  min="500" 
+                  max="50000"
+                  required
+                  onChange={handleChange}
+                  className="p-2 border border-gray-300 rounded-lg"
+                />
+                <div className=" flex flex-col items-center">
+                  <p>Offer price</p>
+                  <span>($/month)</span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 

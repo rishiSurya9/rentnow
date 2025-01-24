@@ -116,7 +116,10 @@ const handleImageSubmit = async () => {
     const promises = files.map(uploadFile);
     try {
       const results = await Promise.all(promises);
-      setPageInfo((prevState) => ({ ...prevState, imageUrls: results }));
+      setPageInfo((prevState) => ({
+        ...prevState,
+        imageUrls: [...prevState.imageUrls, ...results], 
+      }));
       setUploading(false);
       alert("Images uploaded successfully!");
     } catch (error) {
@@ -127,7 +130,6 @@ const handleImageSubmit = async () => {
     setImageUploadError("You can only upload 6 images per listing.");
   }
 };
-
 
   const uploadFile = async (file) => {  
      const formData = new FormData();

@@ -181,7 +181,6 @@ const handleImageSubmit = async () => {
           ...pageInfo,
           ...data,
         });
-        console.log(data);
       }
       else {
         console.log(data.message);

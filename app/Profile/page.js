@@ -17,7 +17,8 @@ const ProfilePage = () => {
     oldPassword: "",
     newPassword: "",
   });
-
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -67,13 +68,13 @@ const ProfilePage = () => {
       const data = await res.json();
      if(res.ok){
       console.log(data);
+      setUserListings(data);
      }
      else {
-      console.log(data.message);
+      setShowListingsError(true);
      }
     } catch (error) {
-      notify();
-      setLoading(false);
+      setShowListingsError(true);
     }
   };
 
@@ -207,9 +208,30 @@ const ProfilePage = () => {
           </span>
         </Link>
       </div>
-      <div className="flex justify-between mt-4">
-        <button type="button" onClick={getListing}>user Listings</button>
-      </div>
+     
+        <button type="button" className="text-green-500 hover:opacity-95 max-w-full" onClick={getListing}>user Listings</button>
+      <p className="text-red-500 text-center mt-4">{showListingsError ? 'Error fetching listings': ''}</p>
+
+      {userListings && userListings.length > 0 &&
+      <div className="flex flex-col gap-4">
+        <h1 className="text-center my-7 font-semibold text-2xl">Your Listings</h1>
+        {
+       userListings.map((listing) => (
+         <div key={listing._id} className="border rounded-lg flex justify-between mt-4 items-center gap-4">
+          <Link href={`/Listing/${listing._id}`}>
+          <img src={listing.imageUrls[0]} alt="listing cover" className="h-16 w-16 object-contain" />
+          </Link>
+          <Link href={`/listing/${listing._id}`} className="text-slate-700 text-sm font-semibold hover:underline truncate">
+          <p >{listing.name}</p>
+          </Link>
+          <div className="flex flex-col gap-4 items-center">
+            <button className="text-red-800 hover:opacity-95 uppercase">Delete</button>
+            <button className="text-green-800 hover:opacity-95 uppercase">Edit</button>
+          </div>
+         </div>
+       ))
+      }
+      </div>}
     </div>
   );
 };

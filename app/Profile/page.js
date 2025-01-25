@@ -72,7 +72,7 @@ const ProfilePage = () => {
         setError(data.message || "An error occurred");
         return;
       }
-      router.push("/");
+      setUserListings((prev) => prev.filter((listing) => listing._id !== listingId));
       setError(null)
     } catch (error) {
       setError(error.message)

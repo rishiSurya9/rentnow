@@ -29,7 +29,14 @@ function page({params }) {
  useEffect(() => {
   const fetchListing = async () => {
     const listingId = id;
-    console.log(listingId);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/get/${listingId}`);
+    const data = await res.json();
+    if(res.ok){
+      setPageInfo(data);
+    }
+    else {
+      console.log(data.message);
+    }
   }
   fetchListing();
 });

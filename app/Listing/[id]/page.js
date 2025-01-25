@@ -15,8 +15,13 @@ const page = ({params}) => {
    useEffect(() => {
      const fetchListing = async () => {
         try{
+<<<<<<< HEAD
        setLoading(true);
        const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/get/${id}`);
+=======
+            setLoading(true);
+       const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get/${id}`);
+>>>>>>> ae675b9350cdd3ebace66268d067f56ff71b9efa
        const data = await res.json();
        if (res.ok) {
          setListing(data);

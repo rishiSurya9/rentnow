@@ -95,7 +95,7 @@ const handleSubmit = async (e) => {
     } else {
       setError(null);
       console.log(data);
-      router.push('/');
+      router.push(`/listing/${id}`);
     }
   } catch (error) {
     setError(error.message);

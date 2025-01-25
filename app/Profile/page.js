@@ -227,10 +227,7 @@ const ProfilePage = () => {
           </span>
         </Link>
       </div>
-      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
-      <p className='text-green-700 mt-5'>
-        {updateSuccess ? 'User is updated successfully!' : ''}
-      </p>
+      
      
         <button type="button" className="text-green-500 hover:opacity-95 max-w-full" onClick={getListing}>user Listings</button>
       <p className="text-red-500 text-center mt-4">{showListingsError ? 'Error fetching listings': ''}</p>

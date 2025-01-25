@@ -1,12 +1,16 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-
+import {Swiper, SwiperSlide} from 'swiper/react';
+import SwiperCore from 'swiper';
+import {Navigation } from 'swiper/modules';
+import 'swiper/css/bundle';
 const page = ({params}) => {
+    SwiperCore.use([Navigation]);
     const { id } = params;
     
-   const [listing, setListing] = React.useState(null);
-   const [loading, setLoading] = React.useState(true);
-   const [error, setError] = React.useState(false);
+   const [listing, setListing] = useState(null);
+   const [loading, setLoading] = useState(true);
+   const [error, setError] = useState(false);
    useEffect(() => {
      const fetchListing = async () => {
         try{
@@ -31,9 +35,21 @@ const page = ({params}) => {
  
   return (
     <div>
-      {listing && <h1>{listing.name}</h1>}
-      {error && <h1>Error fetching listing</h1>}
-      {loading && <h1>Loading...</h1>}
+      {loading  && <p className='text-center'>Loading...</p>}
+      {error && (<p className='text-center'>Error fetching listing</p>)}
+      {listing && !loading && !error && 
+      (
+        <div>
+       <Swiper navigation>
+         {listing.imageUrls.map((url) => (
+            
+           <SwiperSlide key={url}>
+             <img src={url} alt="image" className="w-full h-full object-cover" />
+           </SwiperSlide>
+         ))}
+       </Swiper> 
+       </div>
+      )}
     </div>
   )
 }

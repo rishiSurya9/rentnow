@@ -33,6 +33,7 @@ function page({params }) {
     const data = await res.json();
     if(res.ok){
       setPageInfo(data);
+      console.log(data);
     }
     else {
       console.log(data.message);

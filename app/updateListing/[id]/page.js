@@ -176,18 +176,17 @@ const handleImageSubmit = async () => {
       const listingId = id;
       const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/get/${listingId}`);
       const data = await res.json();
-      if(res.ok){
-        setPageInfo({
-          ...pageInfo,
-          ...data,
-        });
-      }
-      else {
+      if (res.ok) {
+        setPageInfo((prevState) => ({
+          ...prevState, // Ensure we merge the new data with the previous state
+          ...data,     // Overwrite fields with the fetched data
+        }));
+      } else {
         console.log(data.message);
       }
-    }
+    };
     fetchListing();
-  });
+  }, [id]);
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-7">Update a Listing </h1>

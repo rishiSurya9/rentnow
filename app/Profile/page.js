@@ -59,6 +59,25 @@ const ProfilePage = () => {
     });
   }
 
+  const deleteListing = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/delete/${currentUser._id}`, {
+        method: "DELETE",
+        credentials: "include",
+
+        });
+      const data = await res.json();
+
+      if(!res.ok){
+        setError(data.message || "An error occurred");
+        return;
+      }
+      router.push("/");
+      setError(null)
+    } catch (error) {
+      setError(error.message)
+    }
+  }
   const getListing = async () => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/listing/${currentUser._id}`, {
@@ -229,7 +248,7 @@ const ProfilePage = () => {
           <p >{listing.name}</p>
           </Link>
           <div className="flex flex-col gap-4 items-center">
-            <button className="text-red-800 hover:opacity-95 uppercase">Delete</button>
+            <button onClick={deleteListing} className="text-red-800 hover:opacity-95 uppercase">Delete</button>
             <button className="text-green-800 hover:opacity-95 uppercase">Edit</button>
           </div>
          </div>

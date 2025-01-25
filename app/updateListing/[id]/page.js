@@ -177,20 +177,7 @@ const handleImageSubmit = async () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/get/${listingId}`);
       const data = await res.json();
       if (res.ok) {
-        setPageInfo({
-          name : data.name,
-          description : data.description,
-          address : data.address,
-          bedrooms : data.bedrooms,
-          bathrooms : data.bathrooms,
-          regularPrice : data.regularPrice,
-          discountPrice : data.discountPrice,
-          type : data.type,
-          parking : data.parking,
-          furnished : data.furnished,
-          offer : data.offer,
-          imageUrls : data.imageUrls,
-        })
+       setPageInfo(data);
       } else {
         console.log(data.message);
       }
@@ -208,6 +195,7 @@ const handleImageSubmit = async () => {
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="name"
+            value={pageInfo.name}
             required
           />
           <textarea
@@ -216,6 +204,7 @@ const handleImageSubmit = async () => {
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="description"
+            value={pageInfo.description}
             required
           />
           <input
@@ -224,28 +213,29 @@ const handleImageSubmit = async () => {
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="address"
+            value={pageInfo.address}
             required
           />
 
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
-  <input type="radio" id="sell" name="option" className="w-5" onChange={handleChange} />
+  <input type="radio" id="sell" name="option" className="w-5" onChange={handleChange} checked={pageInfo.type === 'sell'} />
   <span>Sell</span>
 </div>
 <div className="flex gap-2">
-  <input type="radio" id="rent" name="option" className="w-5" onChange={handleChange} />
+  <input type="radio" id="rent" name="option" className="w-5" onChange={handleChange} checked={pageInfo.type === 'rent'} />
   <span>Rent</span>
 </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="parking" className="w-5 " onChange={handleChange} />
+              <input type="checkbox" id="parking" className="w-5 " onChange={handleChange} checked={pageInfo.parking} />
               <span>Parking Spot</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="furnished" className="w-5 " onChange={handleChange} />
+              <input type="checkbox" id="furnished" className="w-5 " onChange={handleChange} checked={pageInfo.furnished} />
               <span>Furnished</span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="offer" className="w-5 " onChange={handleChange} />
+              <input type="checkbox" id="offer" className="w-5 " onChange={handleChange} checked={pageInfo.offer} />
               <span>Offer</span>
             </div>
           </div>
@@ -260,6 +250,7 @@ const handleImageSubmit = async () => {
                 required
                 onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
+                value={pageInfo.bedrooms}
               />
               <p>Beds</p>
             </div>
@@ -272,6 +263,7 @@ const handleImageSubmit = async () => {
                 required
                 onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
+                value={pageInfo.bathrooms}
               />
               <p>Baths</p>
             </div>
@@ -283,6 +275,7 @@ const handleImageSubmit = async () => {
                 max="50000"
                 required
                 onChange={handleChange}
+                value={pageInfo.regularPrice}
                 className="p-2 border border-gray-300 rounded-lg"
               />
               <div className=" flex flex-col items-center">
@@ -299,6 +292,7 @@ const handleImageSubmit = async () => {
                   max="50000"
                   required
                   onChange={handleChange}
+                    value={pageInfo.discountPrice}
                   className="p-2 border border-gray-300 rounded-lg"
                 />
                 <div className=" flex flex-col items-center">

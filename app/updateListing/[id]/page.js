@@ -177,11 +177,20 @@ const handleImageSubmit = async () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/get/${listingId}`);
       const data = await res.json();
       if (res.ok) {
-        setPageInfo((prevState) => ({
-          ...prevState, // Ensure we merge the new data with the previous state
-          ...data,     // Overwrite fields with the fetched data
-        }));
-        setPageInfo(data);
+        setPageInfo({
+          name : data.name,
+          description : data.description,
+          address : data.address,
+          bedrooms : data.bedrooms,
+          bathrooms : data.bathrooms,
+          regularPrice : data.regularPrice,
+          discountPrice : data.discountPrice,
+          type : data.type,
+          parking : data.parking,
+          furnished : data.furnished,
+          offer : data.offer,
+          imageUrls : data.imageUrls,
+        })
       } else {
         console.log(data.message);
       }

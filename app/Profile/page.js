@@ -210,7 +210,7 @@ const ProfilePage = () => {
           {loading ? "Loading..." : "Update"}
         </button>
 
-        <Link className=" bg-green-700 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-85 text-center" href="/Listing">
+        <Link className=" bg-green-700 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-85 text-center" href="/CreateListing">
         create Listing
         </Link>
       </form>

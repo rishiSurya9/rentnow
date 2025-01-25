@@ -181,6 +181,7 @@ const handleImageSubmit = async () => {
           ...prevState, // Ensure we merge the new data with the previous state
           ...data,     // Overwrite fields with the fetched data
         }));
+        setPageInfo(data);
       } else {
         console.log(data.message);
       }

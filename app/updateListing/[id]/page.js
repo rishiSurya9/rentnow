@@ -174,7 +174,7 @@ const handleImageSubmit = async () => {
   useEffect(() => {
     const fetchListing = async () => {
       const listingId = id;
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/get/${listingId}`);
+      const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get/${listingId}`);
       const data = await res.json();
       if (res.ok) {
        setPageInfo(data);

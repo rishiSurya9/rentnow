@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from 'react'
 
-const page = (params) => {
-    const {id} = params;
+const page = ({params}) => {
+    const { id } = params;
     useEffect(() => {
         const fetchListting = async () => {
        const res = fetch(`${process.env.PUBLIC_API}/api/listing/get/${id}`);

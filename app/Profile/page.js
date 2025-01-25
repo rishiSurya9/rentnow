@@ -132,9 +132,9 @@ const ProfilePage = () => {
   };
 
 
-  const handleDeleteUser = async ()=>{
+  const handleDeleteUser = async (lisitingId)=>{
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${lisitingId}`,{
         method: "DELETE",
         credentials: "include",
 
@@ -245,7 +245,7 @@ const ProfilePage = () => {
           <p >{listing.name}</p>
           </Link>
           <div className="flex flex-col gap-4 items-center">
-            <button onClick={deleteListing} className="text-red-800 hover:opacity-95 uppercase">Delete</button>
+            <button onClick={()=>deleteListing(listing._id)} className="text-red-800 hover:opacity-95 uppercase">Delete</button>
             <button className="text-green-800 hover:opacity-95 uppercase">Edit</button>
           </div>
          </div>

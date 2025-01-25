@@ -3,15 +3,19 @@ import React, { useEffect } from 'react'
 
 const page = ({params}) => {
     const { id } = params;
-    useEffect(() => {
-        const fetchListting = async () => {
-       const res = fetch(`${process.env.PUBLIC_API}/api/listing/get/${id}`);
-       const data = await res.json();
+   useEffect(() => {
+    const fetchListing = async () => {
+      const listingId = id;
+      const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get/${listingId}`);
+      const data = await res.json();
+      if (res.ok) {
        console.log(data);
-        }
-        fetchListting();
-    }, 
-    [id])
+      } else {
+        console.log(data.message);
+      }
+    };
+    fetchListing();
+  }, [id]);
   return (
     <div>
       <h2>Listing {id}</h2>

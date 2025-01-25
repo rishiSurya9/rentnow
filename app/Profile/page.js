@@ -59,9 +59,9 @@ const ProfilePage = () => {
     });
   }
 
-  const deleteListing = async () => {
+  const deleteListing = async (listingId) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/delete/${currentUser._id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/delete/${listingId}`, {
         method: "DELETE",
         credentials: "include",
 
@@ -132,9 +132,9 @@ const ProfilePage = () => {
   };
 
 
-  const handleDeleteUser = async (lisitingId)=>{
+  const handleDeleteUser = async ()=>{
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${lisitingId}`,{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,{
         method: "DELETE",
         credentials: "include",
 

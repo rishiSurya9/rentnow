@@ -11,6 +11,7 @@ function page({params }) {
   const [imageUploadError, setImageUploadError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { id } = params;
   const [pageInfo, setPageInfo] = useState({
     name: "",
     description: "",
@@ -25,7 +26,14 @@ function page({params }) {
     offer: false,
     imageUrls: [],
   });
-
+ useEffect(() => {
+  const fetchListing = async () => {
+    const listingId = id;
+    console.log(listingId);
+  }
+  fetchListing();
+});
+    
   const handleChange = (e) => {
     if (e.target.id === 'sell' || e.target.id === 'rent') {
       setPageInfo({
@@ -169,10 +177,10 @@ const handleImageSubmit = async () => {
       imageUrls: prevState.imageUrls.filter((_, i) => i !== index),
     }));
   };
-  const { id } = params;
+  
   return (
     <main className="p-3 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
+      <h1 className="text-3xl font-bold text-center my-7">Update a Listing </h1>
       <form  onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4" action="">
         <div className="flex flex-col gap-4 flex-1">
           <input
@@ -314,7 +322,7 @@ const handleImageSubmit = async () => {
             disabled={loading || uploading}
             className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
-            {loading ? 'Creating...' : 'Create listing'}
+            {loading ? 'Creating...' : 'Update listing'}
           </button>
         {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>

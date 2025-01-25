@@ -246,7 +246,7 @@ const ProfilePage = () => {
           </Link>
           <div className="flex flex-col gap-4 items-center">
             <button onClick={()=>deleteListing(listing._id)} className="text-red-800 hover:opacity-95 uppercase">Delete</button>
-            <Link href={`/updateListing/${listing._id}`} passHref>
+            <Link href={`/updateListing/${listing._id}`} >
     <button className="text-green-800 hover:opacity-95 uppercase">Edit</button>
 </Link>
           </div>

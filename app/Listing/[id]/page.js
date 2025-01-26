@@ -144,9 +144,9 @@ const page = ({ params }) => {
                 {listing.furnished ? 'Furnished' : 'Not Furnished'}
               </li>
             </ul>
-            {currentUser&& listing.userRef !== currentUser._id && !contact && (
-            <button onClick={()=>setContact(true)} className='bg-sky-700 text-white rounded-lg uppercase hover:opacity-95'>Contact Landload</button>
-            )}
+            {/* {currentUser&& listing.userRef !== currentUser._id && !contact && ( */}
+            <button onClick={()=>setContact(true)} className='bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>Contact Landload</button>
+            {/* )} */}
             {contact && <Contact listing={listing}/>}
           </div>
         </div>

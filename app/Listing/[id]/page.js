@@ -149,6 +149,8 @@ const page = ({ params }) => {
             {/* )} 
             {contact && <Contact listing={listing}/>} */}
             <button>hello</button>
+
+            <h1 className='text-black bg-red-500'>hello</h1>
           </div>
         </div>
       )}

@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function page() {
   const { currentUser } = useSelector((state) => state.user);
@@ -27,7 +30,7 @@ function page() {
   });
 
    const notify = ()=>{
-    toast.success('Login Successful!', {
+    toast.success('Image uploaded Successfully!', {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -42,7 +45,7 @@ function page() {
 
 
     const errorNotify = ()=>{
-      toast.warn('🦄 Wow so easy!', {
+      toast.warn('Reupload the Image!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

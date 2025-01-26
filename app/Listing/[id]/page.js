@@ -8,6 +8,7 @@ import Contact from '@/app/components/Contact.js';
 import 'swiper/css/bundle';
 
 
+
 import {
   FaBath,
   FaBed,
@@ -33,7 +34,7 @@ const page = ({ params }) => {
   const [contact, setContact] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
-    console.log(currentUser._id, listing?.userRef);
+    console.log(currentUser._id, listing?.useRef);
     
     useEffect(() => {
     const fetchListing = async () => {
@@ -150,7 +151,7 @@ const page = ({ params }) => {
                 <FaChair className="text-lg" />
                 {listing.furnished ? 'Furnished' : 'Not Furnished'}
               </li>
-              <h1>helo</h1>
+             
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button

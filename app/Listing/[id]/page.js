@@ -26,7 +26,7 @@ const page = ({ params }) => {
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const[contact, setContact] = useState(false);
-  const {currentUser} = useSelector((state) => state.user.currentUser);
+  const {currentUser} = useSelector((state) => state.user);
   useEffect(() => {
     const fetchListing = async () => {
       try {

@@ -4,8 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
-import Contact from '@/app/components/Contact';
+import Contact from '@/app/components/Contact.js';
 import 'swiper/css/bundle';
+
 import {
   FaBath,
   FaBed,
@@ -93,7 +94,7 @@ const page = ({ params }) => {
           )}
           <div className="flex flex-col max-w-4xl mx-auto  p-3  gap-4">
             <p className="text-2xl font-semibold">
-              {listing.name} - $ <br />
+              {listing.name} - $
               {listing.offer
                 ? listing.discountPrice.toLocaleString('en-US')
                 : listing.regularPrice.toLocaleString('en-US')}

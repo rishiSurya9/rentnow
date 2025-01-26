@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Contact({ listing }) {
   const [landload, setLandload] = useState(null);
@@ -7,17 +8,17 @@ export default function Contact({ listing }) {
     setMessage(e.target.value);
   };
 
-  useEffect(async () => {
-    const fetchLandload = async () => {
+  useEffect(() => {
+    const fetchLandlord = async () => {
       try {
-        const res = await fetch(`${process.env.PUBLIC_API}/api/user/${listing.userRef}`);
+        const res = await fetch(`/api/user/${listing.userRef}`);
         const data = await res.json();
         setLandload(data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchLandload();
+    fetchLandlord();
   }, [listing.userRef]);
   return (
     <>
@@ -38,10 +39,10 @@ export default function Contact({ listing }) {
           ></textarea>
 
           <Link
-            to={`mailto:${landload.email}?subject=Regarding ${listing.name}&body=${message}`}
-            className="bg-blue-500 text-white text-center rounded-lg p-2"
+          to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
+          className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
           >
-            Send Message
+            Send Message          
           </Link>
         </div>
       )}

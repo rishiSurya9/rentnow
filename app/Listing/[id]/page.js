@@ -143,6 +143,7 @@ const page = ({ params }) => {
                 <FaChair className="text-lg" />
                 {listing.furnished ? 'Furnished' : 'Not Furnished'}
               </li>
+              <h1>helo</h1>
             </ul>
             {/* {currentUser&& listing.userRef !== currentUser._id && !contact && (
             <button onClick={()=>setContact(true)} className='bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>Contact Landload</button>

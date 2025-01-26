@@ -26,6 +26,35 @@ function page() {
     imageUrls: [],
   });
 
+   const notify = ()=>{
+    toast.success('Login Successful!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      onClick: ()=>console.log('clicked'),
+      theme: "light",
+      });
+    };
+
+
+    const errorNotify = ()=>{
+      toast.warn('🦄 Wow so easy!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+    }
+
   const handleChange = (e) => {
     if (e.target.id === 'sell' || e.target.id === 'rent') {
       setPageInfo({
@@ -122,10 +151,12 @@ const handleImageSubmit = async () => {
         ...prevState,
         imageUrls: [...prevState.imageUrls, ...results], 
       }));
+      notify();
       setUploading(false);
-      alert("Images uploaded successfully!");
+      // alert("Images uploaded successfully!");
     } catch (error) {
-      setImageUploadError("Image upload failed.");
+      // setImageUploadError("Image upload failed.");
+      errorNotify();
       setUploading(false);
     }
   } else {
@@ -169,6 +200,9 @@ const handleImageSubmit = async () => {
       imageUrls: prevState.imageUrls.filter((_, i) => i !== index),
     }));
   };
+
+
+
   
   return (
     <main className="p-3 max-w-4xl mx-auto">

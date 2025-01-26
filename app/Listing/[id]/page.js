@@ -89,6 +89,7 @@ const page = ({ params }) => {
           <div className="flex flex-col max-w-4xl mx-auto  p-3  gap-4">
             <p className="text-2xl font-semibold">
               {listing.name} - ${" "}
+              <br />
               {listing.offer
                 ? listing.discountPrice.toLocaleString("en-US")
                 : listing.regularPrice.toLocaleString("en-US")}

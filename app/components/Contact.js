@@ -10,7 +10,7 @@ export default function Contact({ listing }) {
   useEffect(async () => {
     const fetchLandload = async () => {
       try {
-        const res = await fetch(`/api/user/${listing.userRef}`);
+        const res = await fetch(`${process.env.PUBLIC_API}/api/user/${listing.userRef}`);
         const data = await res.json();
         setLandload(data);
       } catch (error) {

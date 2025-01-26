@@ -161,7 +161,8 @@ const page = ({ params }) => {
                 Contact Landload
               </button>
             )}
-            {contact && <Contact listing={listing} />}
+            {/* <Contact listing={listing}  */}
+            {contact && <Contact listing ={listing}/>}
           </div>
         </div>
       )}

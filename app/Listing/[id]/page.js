@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Contact from '@/app/components/Contact.js';
 import 'swiper/css/bundle';
 
+
 import {
   FaBath,
   FaBed,
@@ -16,7 +17,10 @@ import {
   FaParking,
   FaShare,
 } from 'react-icons/fa';
-import Contact from '@/app/components/Contact';
+
+
+
+
 
 const page = ({ params }) => {
   SwiperCore.use([Navigation]);
@@ -26,9 +30,12 @@ const page = ({ params }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const[contact, setContact] = useState(false);
-  const {currentUser} = useSelector((state) => state.user);
-  useEffect(() => {
+  const [contact, setContact] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
+
+    console.log(currentUser._id, listing?.userRef);
+    
+    useEffect(() => {
     const fetchListing = async () => {
       try {
         setLoading(true);
@@ -145,13 +152,15 @@ const page = ({ params }) => {
               </li>
               <h1>helo</h1>
             </ul>
-            {/* {currentUser&& listing.userRef !== currentUser._id && !contact && (
-            <button onClick={()=>setContact(true)} className='bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>Contact Landload</button>
-            {/* )} 
-            {contact && <Contact listing={listing}/>} */}
-            <button>hello</button>
-
-            <h1 className='text-black bg-red-500'>hello</h1>
+            {currentUser && listing.userRef !== currentUser._id && !contact && (
+              <button
+                onClick={() => setContact(true)}
+                className="bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+              >
+                Contact Landload
+              </button>
+            )}
+            {contact && <Contact listing={listing} />}
           </div>
         </div>
       )}

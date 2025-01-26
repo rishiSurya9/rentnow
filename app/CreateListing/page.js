@@ -154,8 +154,8 @@ const handleImageSubmit = async () => {
         ...prevState,
         imageUrls: [...prevState.imageUrls, ...results], 
       }));
-      notify();
       setUploading(false);
+      notify();
       // alert("Images uploaded successfully!");
     } catch (error) {
       // setImageUploadError("Image upload failed.");

@@ -2,7 +2,7 @@
 import React from 'react'
 
 import Link from 'next/link'
-
+import { MdLocationOn } from 'react-icons/md'
 
 
  const ListingItem = ({listing}) => {

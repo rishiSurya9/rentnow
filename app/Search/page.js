@@ -18,7 +18,7 @@ const Page = () => {
   const [listings, setListings] = useState([]);
 
 
-  useEffect(() => {
+  useEffect (()=>{
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     const typeFromUrl = urlParams.get('type');
@@ -28,38 +28,39 @@ const Page = () => {
     const sortFromUrl = urlParams.get('sort');
     const orderFromUrl = urlParams.get('order');
 
-    if (
-      searchTermFromUrl ||
-      typeFromUrl ||
-      parkingFromUrl ||
-      furnishedFromUrl ||
-      offerFromUrl ||
-      sortFromUrl ||
+    if(searchTermFromUrl||
+      typeFromUrl||
+      parkingFromUrl||
+      furnishedFromUrl||
+      offerFromUrl||
+      sortFromUrl||
       orderFromUrl
-    ) {
-      setSidebardata({
+    ){
+      setsidebarData({
         searchTerm: searchTermFromUrl || '',
         type: typeFromUrl || 'all',
-        parking: parkingFromUrl === 'true' ? true : false,
-        furnished: furnishedFromUrl === 'true' ? true : false,
-        offer: offerFromUrl === 'true' ? true : false,
+        parking: parkingFromUrl === 'true'?true:false,
+        furnished: furnishedFromUrl === 'true'?true:false,
+        offer : offerFromUrl === 'true'?true:false,
         sort: sortFromUrl || 'created_at',
-        order: orderFromUrl || 'desc',
-      });
+        order: orderFromUrl || 'desc'
+
+      },)
     }
 
-    const fetchListings = async () => {
+
+    const fetchListing = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`${PUBLIC_API}/api/listings?${searchQuery}`);
+      const res = await fetch(`${process.env.PUBLIC_API}/api/listings?${searchQuery}`);
       const data = await res.json();
       setListings(data);
       setLoading(false);
-    ;
-    };
+    }
+    fetchListing();
+  },[location.search])
 
-    fetchListings();
-  }, [location.search]);
+
 
  
 

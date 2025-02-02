@@ -1,12 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
 
 const ListingItem = ({listing}) => {
   return (
     <>
-    <div>{listing.name}</div>
-    <div>{listing.img}</div>
-    <div>{listing.name}</div>
-    <div>{listing.name}</div>
+        <Link to={`/listing/${listing._id}`}>   
+              <img src={listing.imageUrls[0]} alt="" />
+        </Link>
 
     </>
   )

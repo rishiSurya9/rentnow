@@ -103,7 +103,7 @@ const Page = () => {
     urlParams.set('order', sidebardata.order);
     const searchQuery = urlParams.toString();
 
-    router.push(`/search?${searchQuery}`);  // Navigate to /search with query parameters
+    router.push(`/Search?${searchQuery}`);  // Navigate to /search with query parameters
   };
 
   return (
@@ -211,7 +211,7 @@ const Page = () => {
             <ListingItem key={listing._id} listing={listing} />
         ))}
 
-        
+
         </div>
       </div>
     </div>

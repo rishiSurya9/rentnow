@@ -36,7 +36,7 @@ const Header = () => {
     if (searchTerm.trim()) {
       const params = new URLSearchParams();
       params.set('searchTerm', searchTerm);
-      router.push(`/search?${params.toString()}`);
+      router.push(`/Search?${params.toString()}`);
     }
   };
 

@@ -55,12 +55,16 @@ const Page = () => {
 
 
     const fetchListing = async () => {
-      setLoading(true);
-      const searchQuery = urlParams.toString();
-      const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get?${searchQuery}`);
-      const data = await res.json();
-      setListings(data);
-      setLoading(false);
+     try {
+       setLoading(true);
+       const searchQuery = urlParams.toString();
+       const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get?${searchQuery}`);
+       const data = await res.json();
+       setListings(data);
+       setLoading(false);
+     } catch (error) {
+        
+     }
       
     }
     fetchListing();

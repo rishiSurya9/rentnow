@@ -34,7 +34,7 @@ const Header = () => {
     const urlParams = new URLSearchParams();
     urlParams.set('searchTerm', searchTerm);
     // router.push(`/Search?${urlParams.toString()}`); // Correct usage of router.push
-    router.push(`/Search?${urlParams.toString()}`);
+    router.push(`/search?${urlParams.toString()}`);
   };
 
   useEffect(() => {

@@ -8,6 +8,7 @@ const ListingItem = ({listing}) => {
               <img src={listing.imageUrls[0]} alt="listing cover"
               className='h-'
               />
+              
         </Link>
 
     </>

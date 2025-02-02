@@ -152,6 +152,7 @@ const page = ({ params }) => {
                 <FaChair className="text-lg" />
                 {listing.furnished ? 'Furnished' : 'Not Furnished'}
               </li>
+              
              
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (

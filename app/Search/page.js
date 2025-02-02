@@ -18,6 +18,10 @@ const Page = () => {
   const [listings, setListings] = useState([]);
 
 
+  console.log(listings);
+  
+
+
   useEffect (()=>{
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
@@ -52,10 +56,11 @@ const Page = () => {
     const fetchListing = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`${process.env.PUBLIC_API}/api/listings?${searchQuery}`);
+      const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get?${searchQuery}`);
       const data = await res.json();
       setListings(data);
       setLoading(false);
+      
     }
     fetchListing();
   },[location.search])

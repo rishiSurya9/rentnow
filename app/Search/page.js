@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ListingItem from '../components/ListingItem';
 
 const Page = () => {
   const [sidebardata, setsidebarData] = useState({
@@ -191,8 +192,27 @@ const Page = () => {
         </form>
       </div>
 
-      <div className='text-3xl font-bold border-b p-3 text-slate-700 mt-5'>
-        <h1>Listing results</h1>
+      <div  className='flex-1'>
+        <h1 className='text-3xl font-bold border-b p-3 text-slate-700 mt-5'>Listing results</h1>
+
+
+        <div className='p-7 flex flex-wrap gap-4'>
+          {!loading && listings.length === 0 &&(
+            <p className=' text-xl  text-slate-800'>No listing Count</p>
+          )}
+          {
+            loading && (
+              <p className=' text-xl  text-slate-800 text-center w-full'></p>
+            )
+          }
+
+
+        {!loading && listings && listings.map((listing) => (
+            <ListingItem key={listing._id} listing={listing} />
+        ))}
+
+        
+        </div>
       </div>
     </div>
   );

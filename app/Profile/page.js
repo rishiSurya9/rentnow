@@ -61,7 +61,7 @@ const ProfilePage = () => {
 
   const deleteListing = async (listingId) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/listing/delete/${listingId}`, {
+      const res = await fetch(`${process.env.PUBLIC_API}/api/listing/delete/${listingId}`, {
         method: "DELETE",
         credentials: "include",
 
@@ -103,7 +103,7 @@ const ProfilePage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/user/update/${currentUser._id}`,
+        `${process.env.PUBLIC_API}/api/user/update/${currentUser._id}`,
 
         {
           method: "POST",
@@ -134,7 +134,7 @@ const ProfilePage = () => {
 
   const handleDeleteUser = async ()=>{
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/delete/${currentUser._id}`,{
+      const res = await fetch(`${process.env.PUBLIC_API}/api/user/delete/${currentUser._id}`,{
         method: "DELETE",
         credentials: "include",
 

@@ -17,6 +17,7 @@ const Page = () => {
   const router = useRouter(); 
   const [loading , setLoading] = useState(false);
   const [listings, setListings] = useState([]);
+  const [showmore, setShowmore] = useState(false);
 
 
   console.log(listings);
@@ -60,8 +61,14 @@ const Page = () => {
        const searchQuery = urlParams.toString();
        const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get?${searchQuery}`);
        const data = await res.json();
+
+       if(data.length>8){
+        setShowmore(true);
+       }
+
        setListings(data);
        setLoading(false);
+
      } catch (error) {
         
      }
@@ -109,6 +116,25 @@ const Page = () => {
 
     router.push(`/Search?${searchQuery}`);  // Navigate to /search with query parameters
   };
+
+
+  const onShowMoreClick = async() => {
+    const numberOfListings = listings.length;
+    const startIndex = numberOfListings;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('start', startIndex);
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get?${searchQuery}`);
+    const data = await res.json();
+
+    if(data.length<9){
+      setShowmore(false);
+    }
+
+    setListings([...listings, ...data]);
+    
+
+  }
 
   return (
     <div className='flex flex-col md:flex-row gap-2 '>
@@ -216,7 +242,17 @@ const Page = () => {
         ))}
 
 
+        {showmore && (
+         <button onClick={
+          onShowMoreClick
+         }
+         className='text-green-700 hover:underline p-7 text-center w-full'>
+          show more
+         </button>
+        )}
+
         </div>
+
       </div>
     </div>
   );

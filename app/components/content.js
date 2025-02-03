@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
@@ -62,7 +62,7 @@ export default function Home() {
           We have a wide range of properties for you to choose from.
         </div>
         <Link
-          to={'/search'}
+          href={'/search'}
           className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
         >
           Let's get started...
@@ -94,7 +94,7 @@ export default function Home() {
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+              <Link className='text-sm text-blue-800 hover:underline' href={'/search?offer=true'}>Show more offers</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing) => (
@@ -107,7 +107,7 @@ export default function Home() {
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+              <Link className='text-sm text-blue-800 hover:underline' href={'/search?type=rent'}>Show more places for rent</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (

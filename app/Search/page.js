@@ -58,12 +58,15 @@ const Page = () => {
     const fetchListing = async () => {
      try {
        setLoading(true);
+       setShowmore(false);
        const searchQuery = urlParams.toString();
        const res = await fetch(`${process.env.PUBLIC_API}/api/listing/get?${searchQuery}`);
        const data = await res.json();
 
        if(data.length>8){
         setShowmore(true);
+       }else {
+        setShowmore(false);
        }
 
        setListings(data);

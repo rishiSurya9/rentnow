@@ -50,9 +50,11 @@ const Header = () => {
     <header className="bg-red-600 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <h1 className="font-bold text-sm sm:text-xl">
+          <Link href='/'>
           <span className="text-white text-2xl hover:text-gray-200 cursor-pointer">
             RentNow
           </span>
+          </Link>
         </h1>
 
         <div

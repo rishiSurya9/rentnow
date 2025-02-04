@@ -317,7 +317,7 @@ const handleImageSubmit = async () => {
               className="p-3 text-green-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80"
               disabled={uploading} 
             >
-              {uploading ? "Uploading..." : "Upload"}
+             {uploading ? 'uploading....' : "Upload Images"}
             </button>
             </div>
             <p className='text-red-700 text-sm'>

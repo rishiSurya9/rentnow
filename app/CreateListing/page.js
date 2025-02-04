@@ -349,7 +349,7 @@ function Page() {
               onClick={handleImageSubmit}
               className="p-3 text-green-500 rounded-lg border bg-green-100"
             >
-              Upload Images
+              {uploading ? 'uploading....' : "Upload Images"}
             </button>
           </div>
           {imageUploadError && (

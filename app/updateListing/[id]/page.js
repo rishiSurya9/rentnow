@@ -315,7 +315,7 @@ const handleImageSubmit = async () => {
               type="button"
               onClick={handleImageSubmit}
               className="p-3 text-green-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80"
-              disabled={uploading} // Disable button during upload
+              disabled={uploading} 
             >
               {uploading ? "Uploading..." : "Upload"}
             </button>

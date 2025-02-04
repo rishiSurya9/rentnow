@@ -370,7 +370,7 @@ function page() {
             <button
               type="button"
               onClick={handleImageSubmit}
-              className="p-3 text-green-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80"
+              className="p-3 text-red-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80"
               disabled={uploading} // Disable button during upload
             >
               {uploading ? "Uploading..." : "Upload"}

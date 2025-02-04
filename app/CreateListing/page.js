@@ -348,6 +348,7 @@ function Page() {
               type="button"
               onClick={handleImageSubmit}
               className="p-3 text-green-500 rounded-lg border bg-green-100"
+              disabled = {uploading}
             >
               {uploading ? 'uploading....' : "Upload Images"}
             </button>

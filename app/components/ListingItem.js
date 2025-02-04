@@ -1,14 +1,12 @@
 'use client';
 import React from 'react';
-
 import Link from 'next/link';
 import { MdLocationOn } from 'react-icons/md';
-import { list } from 'postcss';
 
 const ListingItem = ({ listing }) => {
   return (
     <>
-      <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[300px]">
+      <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[300px] border-2 border-[rgb(1,169,182)]">
         <Link href={`/listing/${listing._id}`}>
           <img
             src={listing.imageUrls[0]}
@@ -18,13 +16,12 @@ const ListingItem = ({ listing }) => {
 
           <div className="p-3 flex flex-col gap-2 w-full">
             <p className="truncate text-lg font-semibold text-slate-700">
-              {' '}
               {listing.name}
             </p>
 
-            <div className="flex items-center gap-1 ">
+            <div className="flex items-center gap-1">
               <MdLocationOn className="h-4 w-4 text-green-700" />
-              <p className="text-gray-600 text-sm truncate w-full ">
+              <p className="text-gray-600 text-sm truncate w-full">
                 {listing.address}
               </p>
             </div>

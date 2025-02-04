@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function page() {
+function Page() {
   const { currentUser } = useSelector((state) => state.user);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -29,7 +29,7 @@ function page() {
   });
 
   const notify = () => {
-    toast.success("Image uploaded Successfully!", {
+    toast.success("Image uploaded successfully!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -37,13 +37,12 @@ function page() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      onClick: () => console.log("clicked"),
       theme: "light",
     });
   };
 
   const errorNotify = () => {
-    toast.warn("Reupload the Image!", {
+    toast.warn("Reupload the image!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -52,7 +51,6 @@ function page() {
       draggable: true,
       progress: undefined,
       theme: "light",
-      transition: Bounce,
     });
   };
 
@@ -64,28 +62,21 @@ function page() {
       });
     }
 
-    if (
-      e.target.id === "parking" ||
-      e.target.id === "furnished" ||
-      e.target.id === "offer"
-    ) {
+    if (e.target.id === "parking" || e.target.id === "furnished" || e.target.id === "offer") {
       setPageInfo({
         ...pageInfo,
         [e.target.id]: e.target.checked,
       });
     }
 
-    if (
-      e.target.type === "number" ||
-      e.target.type === "text" ||
-      e.target.type === "textarea"
-    ) {
+    if (e.target.type === "number" || e.target.type === "text" || e.target.type === "textarea") {
       setPageInfo({
         ...pageInfo,
         [e.target.id]: e.target.value,
       });
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!pageInfo.offer) {
@@ -98,9 +89,7 @@ function page() {
       }
 
       if (pageInfo.offer && +pageInfo.regularPrice <= +pageInfo.discountPrice) {
-        setError(
-          "Regular price should be greater than discount price when an offer is applied."
-        );
+        setError("Regular price should be greater than discount price when an offer is applied.");
         return;
       }
       setLoading(true);
@@ -118,11 +107,9 @@ function page() {
       });
       const data = await res.json();
       if (!res.ok) {
-        console.log(data.message);
         setError(data.message);
       } else {
         setError(null);
-        console.log(data);
         router.push("/");
       }
     } catch (error) {
@@ -131,6 +118,7 @@ function page() {
       setLoading(false);
     }
   };
+
   const handleImageSubmit = async () => {
     const MAX_IMAGE_SIZE_MB = 2;
     const isValidSize = files.every(
@@ -138,9 +126,7 @@ function page() {
     );
 
     if (!isValidSize) {
-      setImageUploadError(
-        `Each image must be less than ${MAX_IMAGE_SIZE_MB}MB.`
-      );
+      setImageUploadError(`Each image must be less than ${MAX_IMAGE_SIZE_MB}MB.`);
       setUploading(false);
       return;
     }
@@ -158,9 +144,7 @@ function page() {
         }));
         setUploading(false);
         notify();
-        // alert("Images uploaded successfully!");
       } catch (error) {
-        // setImageUploadError("Image upload failed.");
         errorNotify();
         setUploading(false);
       }
@@ -176,13 +160,10 @@ function page() {
     formData.append("cloud_name", "dx5kkvi7t");
 
     try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dx5kkvi7t/image/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`https://api.cloudinary.com/v1_1/dx5kkvi7t/image/upload`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -199,6 +180,7 @@ function page() {
     const fileArray = Array.from(e.target.files);
     setFiles(fileArray);
   };
+
   const removeImage = (index) => () => {
     setPageInfo((prevState) => ({
       ...prevState,
@@ -208,24 +190,19 @@ function page() {
 
   return (
     <main className="p-3 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-center my-7">Create a Listing </h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col sm:flex-row gap-4"
-        action=""
-      >
+      <h1 className="text-3xl font-bold text-center my-7">Create a Listing</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <input
             type="text"
-            placeholder="name"
+            placeholder="Name"
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="name"
             required
           />
           <textarea
-            type="text"
-            placeholder="description"
+            placeholder="Description"
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="description"
@@ -233,7 +210,7 @@ function page() {
           />
           <input
             type="text"
-            placeholder="address"
+            placeholder="Address"
             onChange={handleChange}
             className="border p-3 rounded-lg"
             id="address"
@@ -265,7 +242,7 @@ function page() {
               <input
                 type="checkbox"
                 id="parking"
-                className="w-5 "
+                className="w-5"
                 onChange={handleChange}
               />
               <span>Parking Spot</span>
@@ -274,7 +251,7 @@ function page() {
               <input
                 type="checkbox"
                 id="furnished"
-                className="w-5 "
+                className="w-5"
                 onChange={handleChange}
               />
               <span>Furnished</span>
@@ -283,7 +260,7 @@ function page() {
               <input
                 type="checkbox"
                 id="offer"
-                className="w-5 "
+                className="w-5"
                 onChange={handleChange}
               />
               <span>Offer</span>
@@ -351,17 +328,17 @@ function page() {
         </div>
 
         <div className="flex flex-col flex-1 gap-4">
-          <p className="font-semibold ">
+          <p className="font-semibold">
             Images:
             <span className="font-normal text-gray-500 ml-2">
-              The first image will be to the cover (max 6)
+              The first image will be the cover (max 6)
             </span>
           </p>
 
           <div className="flex gap-4">
             <input
               onChange={handleFileChange}
-              className="p-3 border border-gray-300 rounded w-full "
+              className="p-3 border border-gray-300 rounded w-full"
               type="file"
               id="images"
               accept="image/*"
@@ -370,42 +347,58 @@ function page() {
             <button
               type="button"
               onClick={handleImageSubmit}
-              className="p-3 text-red-800 border border-green-800 rounded uppercase hover:shadow-lg disabled:opacity-80"
-              disabled={uploading} // Disable button during upload
+              className="p-3 text-green-500 rounded-lg border bg-green-100"
             >
-              {uploading ? "Uploading..." : "Upload"}
+              Upload Images
             </button>
           </div>
-          <p className="text-red-700 text-sm">
-            {imageUploadError && imageUploadError}
-          </p>
-          {pageInfo.imageUrls.length > 0 &&
-            pageInfo.imageUrls.map((url, index) => (
-              <div
-                key={url}
-                className="flex justify-between p-3 border items-center gap-2"
-              >
-                <img src={url} alt="image" className="w-20 h-20 rounded-lg" />
-                <button
-                  type="button"
-                  onClick={removeImage(index)}
-                  className="p-3 text-red-600 uppercase hover:opacity-75 rounded-lg"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+          {imageUploadError && (
+            <p className="text-red-500 font-medium">{imageUploadError}</p>
+          )}
+
+          <div className="grid grid-cols-3 gap-4 mt-6">
+            {pageInfo.imageUrls.length > 0 &&
+              pageInfo.imageUrls.map((url, index) => (
+                <div key={index} className="relative">
+                  <img
+                    src={url}
+                    alt="Image"
+                    className="rounded-md shadow-lg w-full h-32 object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={removeImage(index)}
+                    className="absolute top-1 right-1 text-red-600"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path
+                        fill="none"
+                        d="M0 0h24v24H0z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 12h-4v4h-2v-4H7v-2h4V8h2v4h4v2z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ))}
+          </div>
           <button
-            disabled={loading || uploading}
-            className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-4 bg-blue-600 text-white rounded-lg mt-6"
+            type="submit"
           >
-            {loading ? "Creating..." : "Create listing"}
+            {loading ? "Loading..." : "Submit"}
           </button>
-          {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
     </main>
   );
 }
 
-export default page;
+export default Page;

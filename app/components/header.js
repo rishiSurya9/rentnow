@@ -34,7 +34,6 @@ const Header = () => {
     const urlParams = new URLSearchParams();
     urlParams.set('searchTerm', searchTerm);
     // router.push(`/Search?${urlParams.toString()}`); // Correct usage of router.push
- 
     router.push(`/Search?${urlParams.toString()}`);
   };
 
@@ -47,13 +46,13 @@ const Header = () => {
   }, [window.location.search]);
 
   return (
-    <header className="bg-red-600 shadow-md">
+    <header className="bg-[rgb(1,169,182)] shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <h1 className="font-bold text-sm sm:text-xl">
           <Link href='/'>
-          <span className="text-white text-2xl hover:text-gray-200 cursor-pointer">
-            RentNow
-          </span>
+            <span className="text-white text-2xl hover:text-gray-200 cursor-pointer">
+              RentNow
+            </span>
           </Link>
         </h1>
 

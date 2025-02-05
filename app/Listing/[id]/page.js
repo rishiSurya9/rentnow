@@ -68,6 +68,7 @@ const page = ({ params }) => {
       if(res.ok){
       MailId = data;
       console.log(MailId);
+      window.location.href = `mailto:${MailId}`;
       }
       else{
         console.log(data);

@@ -62,7 +62,21 @@ const page = ({ params }) => {
     };
     fetchListing();
   }, [id]);
-
+  const fetchMailId = async () => {
+    try{
+      const res = await fetch(`${process.env.PUBLIC_API}/api/user/mail/${listing.userRef}`)
+      const data = await res.json()
+      if(res.ok){
+      console.log(data);
+      }
+      else{
+        console.log(data);
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  };
   return (
     <div>
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}

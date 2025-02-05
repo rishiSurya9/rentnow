@@ -67,7 +67,7 @@ const page = ({ params }) => {
       const data = await res.json()
       if(res.ok){
       MailId = data;
-      console.log('MailId');
+      console.log(MailId);
       }
       else{
         console.log(data);

@@ -178,7 +178,7 @@ const page = ({ params }) => {
               </button>
             )}
             {/* <Contact listing={listing}  */}
-            {contact && <Contact onClick={fetchMailId} listing ={listing}/>}
+            {contact && <button onClick={fetchMailId} className="bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3">Contact Landload</button>}
           </div>
         </div>
       )}

@@ -178,7 +178,7 @@ const page = ({ params }) => {
               </button>
             )}
             {/* <Contact listing={listing}  */}
-            {contact && <Contact listing ={listing}/>}
+            {contact && <Contact onClick={fetchMailId} listing ={listing}/>}
           </div>
         </div>
       )}

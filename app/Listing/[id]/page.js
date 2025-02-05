@@ -26,7 +26,7 @@ import {
 const page = ({ params }) => {
   SwiperCore.use([Navigation]);
   const { id } = params;
-
+  const MailId = "";
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -35,7 +35,6 @@ const page = ({ params }) => {
   
   const { currentUser } = useSelector((state) => state.user);
 
-    console.log(currentUser._id, listing?.useRef);
     
     useEffect(() => {
     const fetchListing = async () => {
@@ -67,7 +66,8 @@ const page = ({ params }) => {
       const res = await fetch(`${process.env.PUBLIC_API}/api/user/mail/${listing.userRef}`)
       const data = await res.json()
       if(res.ok){
-      console.log(data);
+      MailId = data;
+      console.log('MailId');
       }
       else{
         console.log(data);

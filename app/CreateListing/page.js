@@ -390,6 +390,9 @@ function Page() {
                 </div>
               ))}
           </div>
+          {error && (
+            <p className="text-red-500 font-medium">{error}</p>
+          )}
           <button
             className="p-4 bg-blue-600 text-white rounded-lg mt-6"
             type="submit"

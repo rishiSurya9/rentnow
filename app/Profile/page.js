@@ -14,7 +14,11 @@ const ProfilePage = () => {
     email: currentUser?.email || "",
     oldPassword: "",
     newPassword: "",
+    avatar: " ",
   });
+
+  
+  
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -142,6 +146,29 @@ const ProfilePage = () => {
     }
   };
 
+  const uploadAvatar = async (file)=>{
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "rent_places");
+    formData.append("cloud_name", "dx5kkvi7t");
+
+    try {
+      const response = await fetch(`https://api.cloudinary.com/v1_1/dx5kkvi7t/image/upload`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        formData.avatar= data.secure_url;
+      } else {
+        throw new Error("Failed to upload image");
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   const fileRef = useRef(null);
 
   return (
@@ -149,7 +176,7 @@ const ProfilePage = () => {
       <h1 className="text-3xl font-bold text-center my-7 text-[#01a9b6]">Profile</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input type="file" ref={fileRef} hidden accept="image/*" />
+        <input onClick={uploadAvatar} type="file" ref={fileRef} hidden accept="image/*" />
         <img
           onClick={() => fileRef.current.click()}
           src={formData.avatar}

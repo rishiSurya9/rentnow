@@ -17,13 +17,15 @@ function Page() {
     name: "",
     description: "",
     address: "",
-    bedrooms: 1,
-    bathrooms: 1,
+   propertyType: "Flat",
+   BHK: 1,
+   rooms: 1,
     regularPrice: 0,
     discountPrice: 0,
     type: "rent",
     parking: false,
     furnished: false,
+    area: "",
     offer: false,
     imageUrls: [],
   });
@@ -61,7 +63,12 @@ function Page() {
         type: e.target.id,
       });
     }
-
+    if (e.target.id === "Hospital Area" || e.target.id === "Educational Area" || e.target.id === "IT Area" || e.target.id === "Industrial Area" || e.target.id === "Residential Area") {
+      setPageInfo({
+        ...pageInfo,
+        area: e.target.id,
+      });
+    }
     if (e.target.id === "parking" || e.target.id === "furnished" || e.target.id === "offer") {
       setPageInfo({
         ...pageInfo,
@@ -75,10 +82,12 @@ function Page() {
         [e.target.id]: e.target.value,
       });
     }
+    
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("pageInfo", pageInfo);
     if (!pageInfo.offer) {
       pageInfo.discountPrice = pageInfo.regularPrice;
     }
@@ -266,31 +275,53 @@ function Page() {
               <span>Offer</span>
             </div>
           </div>
+          <div className="flex gap-6 flex-wrap">
+          <div className="flex gap-2">
+              <input
+                type="radio"
+                id="Flat"
+                name="property"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>Flat</span>
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="radio"
+                id="House"
+                name="property"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>House</span>
+            </div>
+            </div>
 
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <input
                 type="number"
-                id="bedrooms"
+                id="BHK"
                 min="1"
                 max="10"
                 required
                 onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
               />
-              <p>Beds</p>
+              <p>BHK</p>
             </div>
             <div className="flex items-center gap-2">
               <input
                 type="number"
-                id="bathrooms"
+                id="rooms"
                 min="1"
                 max="10"
                 required
                 onChange={handleChange}
                 className="p-2 border border-gray-300 rounded-lg"
               />
-              <p>Baths</p>
+              <p>Rooms</p>
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -325,6 +356,58 @@ function Page() {
               </div>
             )}
           </div>
+          <div className="flex gap-6 flex-wrap">
+          <div className="flex gap-2">
+              <input
+                type="radio"
+                id="Educational Area"
+                name="Area"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>Educational Area</span>
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="radio"
+                id="Industrial Area"
+                name="Area"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>Industrial Area</span>
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="radio"
+                id="IT Area"
+                name="Area"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>IT Area</span>
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="radio"
+                id="Residential Area"
+                name="Area"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>Residential Area</span>
+            </div>
+            <div className="flex gap-2">
+              <input
+                type="radio"
+                id="Hospital Area"
+                name="Area"
+                className="w-5"
+                onChange={handleChange}
+              />
+              <span>Hospital Area</span>
+            </div>
+            </div>
         </div>
 
         <div className="flex flex-col flex-1 gap-4">

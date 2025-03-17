@@ -335,7 +335,7 @@ function Page() {
               />
               <div className=" flex flex-col items-center">
                 <p>Regular Price</p>
-                <span>($/month)</span>
+                <span>(Rs/month)</span>
               </div>
             </div>
             {pageInfo.offer && (
@@ -351,7 +351,7 @@ function Page() {
                 />
                 <div className=" flex flex-col items-center">
                   <p>Offer price</p>
-                  <span>($/month)</span>
+                  <span>(Rs/month)</span>
                 </div>
               </div>
             )}

@@ -117,11 +117,11 @@ const page = ({ params }) => {
             </p>
           )}
           <div className="flex flex-col max-w-4xl mx-auto  p-3  gap-4">
-            <p className="text-2xl font-semibold">
-              {listing.name} 
+            <p className="text-2xl font-semibold gap-3">
+              {listing.name}
               {listing.offer
                 ? listing.discountPrice.toLocaleString('en-US')
-                : listing.regularPrice.toLocaleString('en-US')},"Rs"
+                : listing.regularPrice.toLocaleString('en-US')},Rs
               {listing.type === 'rent' && ' / month'}
             </p>
             <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
@@ -147,15 +147,15 @@ const page = ({ params }) => {
               <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaBed className="text-lg" />
                 {listing.bedrooms > 1
-                  ? `${listing.bedrooms} Beds`
-                  : `${listing.bedrooms} Bed`}
+                  ? `${listing.BHK} BHK`
+                  : `${listing.BHK} BHK`}
               </li>
 
               <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaBath className="text-lg" />
                 {listing.bedrooms > 1
-                  ? `${listing.rooms} Baths`
-                  : `${listing.rooms} Baths`}
+                  ? `${listing.rooms} Rooms`
+                  : `${listing.rooms} Rooms`}
               </li>
 
               <li className="flex items-center gap-1 whitespace-nowrap">

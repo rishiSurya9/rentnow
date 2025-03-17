@@ -154,8 +154,8 @@ const page = ({ params }) => {
               <li className="flex items-center gap-1 whitespace-nowrap">
                 <FaBath className="text-lg" />
                 {listing.bedrooms > 1
-                  ? `${listing.bedrooms} Baths`
-                  : `${listing.bedrooms} Baths`}
+                  ? `${listing.rooms} Baths`
+                  : `${listing.rooms} Baths`}
               </li>
 
               <li className="flex items-center gap-1 whitespace-nowrap">

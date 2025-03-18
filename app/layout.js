@@ -1,4 +1,5 @@
 "use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import dotenv from "dotenv";
@@ -7,10 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-
-
-// import privateRoute from "./components/privateRoute";
-
+import { SessionProvider } from "next-auth/react"; // ✅ Import SessionProvider
 import Navbar from "./components/header";
 
 const geistSans = Geist({
@@ -33,10 +31,11 @@ export default function RootLayout({ children }) {
       >
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Navbar />
-            {children}
-            <ToastContainer />
-           
+            <SessionProvider> {/* ✅ Wrap app with SessionProvider */}
+              <Navbar />
+              {children}
+              <ToastContainer />
+            </SessionProvider>
           </PersistGate>
         </Provider>
       </body>

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
-    const token = req.cookies.get("access_token");
+    const token = req.cookies.get("access_token")?.value; // ✅ Fix cookie handling
 
     const protectedRoutes = ["/Profile", "/Search"];
 

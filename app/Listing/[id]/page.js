@@ -6,6 +6,7 @@ import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
 import Contact from '@/app/components/Contact.js';
 import 'swiper/css/bundle';
+import { SlShareAlt } from "react-icons/sl";
 
 
 
@@ -127,6 +128,10 @@ const page = ({ params }) => {
             <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
               <FaMapMarkerAlt className="text-green-700" />
               {listing.address}
+            </p>
+            <p>
+             <SlShareAlt />
+             {listing.type === 'radio'}
             </p>
 
             <div className="flex gap-4">

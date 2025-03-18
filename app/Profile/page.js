@@ -47,7 +47,7 @@ const ProfilePage = () => {
 
   const { data: session } = useSession()
   useEffect(() => {
-    if (!session) router.push("/login");
+    if (!session) router.push("/Login");
   }, [session, router]);
 
   if (!session) return <p>Loading...</p>;

@@ -6,9 +6,7 @@ import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
 import Contact from '@/app/components/Contact.js';
 import 'swiper/css/bundle';
-import { SlShareAlt } from "react-icons/sl";
-
-
+import { SlShareAlt } from 'react-icons/sl';
 
 import {
   FaBath,
@@ -20,24 +18,19 @@ import {
   FaShare,
 } from 'react-icons/fa';
 
-
-
-
-
 const page = ({ params }) => {
   SwiperCore.use([Navigation]);
   const { id } = params;
-  const MailId = "";
+  const MailId = '';
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [contact, setContact] = useState(false);
-  
+
   const { currentUser } = useSelector((state) => state.user);
 
-    
-    useEffect(() => {
+  useEffect(() => {
     const fetchListing = async () => {
       try {
         setLoading(true);
@@ -63,19 +56,19 @@ const page = ({ params }) => {
     fetchListing();
   }, [id]);
   const fetchMailId = async () => {
-    try{
-      const res = await fetch(`${process.env.PUBLIC_API}/api/user/mail/${listing.userRef}`)
-      const data = await res.json()
-      if(res.ok){
-      MailId = data;
-      console.log(MailId);
-      window.location.href = `mailto:${MailId}`;
-      }
-      else{
+    try {
+      const res = await fetch(
+        `${process.env.PUBLIC_API}/api/user/mail/${listing.userRef}`,
+      );
+      const data = await res.json();
+      if (res.ok) {
+        MailId = data;
+        console.log(MailId);
+        window.location.href = `mailto:${MailId}`;
+      } else {
         console.log(data);
       }
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
     }
   };
@@ -122,17 +115,21 @@ const page = ({ params }) => {
               {listing.name}
               {listing.offer
                 ? listing.discountPrice.toLocaleString('en-US')
-                : listing.regularPrice.toLocaleString('en-US')},Rs
+                : listing.regularPrice.toLocaleString('en-US')}
+              ,Rs
               {listing.type === 'rent' && ' / month'}
             </p>
             <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
               <FaMapMarkerAlt className="text-green-700" />
               {listing.address}
             </p>
-            <p>
-             <SlShareAlt />
-             {listing.propertyType}
-            </p>
+            <div className='flex gap-2 font-semibold'>
+              <p>
+                <SlShareAlt />
+                {listing.propertyType}
+              </p>
+              <p>{listing.area}</p>
+            </div>
 
             <div className="flex gap-4">
               <p className="bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
@@ -172,8 +169,6 @@ const page = ({ params }) => {
                 <FaChair className="text-lg" />
                 {listing.furnished ? 'Furnished' : 'Not Furnished'}
               </li>
-              
-             
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
@@ -184,7 +179,14 @@ const page = ({ params }) => {
               </button>
             )}
             {/* <Contact listing={listing}  */}
-            {contact && <button onClick={fetchMailId} className="bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3">Contact Landload</button>}
+            {contact && (
+              <button
+                onClick={fetchMailId}
+                className="bg-sky-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+              >
+                Contact Landload
+              </button>
+            )}
           </div>
         </div>
       )}

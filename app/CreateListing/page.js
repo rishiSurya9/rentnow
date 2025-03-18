@@ -370,7 +370,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="Industrial Area"
+                id="area"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -380,7 +380,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="IT Area"
+                 id="area"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -390,7 +390,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="Residential Area"
+                 id="area"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -400,7 +400,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="Hospital Area"
+                id="area"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}

@@ -119,7 +119,21 @@ const page = ({ params }) => {
               ,Rs
               {listing.type === 'rent' && ' / month'}
             </p>
-            <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
+
+            <ul className='font-semibold text-sm flex items-center gap-4 sm:gap-6 flex-wrap'>
+                <li className='flex items-center gap-1 whitespace-nowrap'>
+                <FaMapMarkerAlt className="text-green-700" />
+                {listing.address}
+                </li>
+                <li className='flex items-center gap-1 whitespace-nowrap'>
+                <SlShareAlt />
+                {listing.propertyType}
+                </li>
+                <li className='flex items-center gap-1 whitespace-nowrap'>
+                <p>{listing.area}</p>
+                </li>
+            </ul>
+            {/* <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
               <FaMapMarkerAlt className="text-green-700" />
               {listing.address}
             </p>
@@ -129,7 +143,7 @@ const page = ({ params }) => {
                 {listing.propertyType}
               </p>
               <p>{listing.area}</p>
-            </div>
+            </div> */}
 
             <div className="flex gap-4">
               <p className="bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">

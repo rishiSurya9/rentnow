@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux"; // Import to access the Redux state
 import { useRef } from "react";
-
+import { useSession, signOut } from "next-auth/react";
 const ProfilePage = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
@@ -44,6 +44,13 @@ const ProfilePage = () => {
       [e.target.id]: e.target.value,
     });
   };
+
+  const { data: session } = useSession()
+  useEffect(() => {
+    if (!session) router.push("/login");
+  }, [session, router]);
+
+  if (!session) return <p>Loading...</p>;
 
   const notify = () => {
     toast.success("Information Updated!", {
@@ -226,6 +233,8 @@ const ProfilePage = () => {
         >
           {loading ? "Loading..." : "Update"}
         </button>
+        <button onClick={() => signOut()}>Logout</button>
+
 
         <Link
           className="bg-green-700 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-85 text-center"

@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import { OAuth } from '../components/OAuth.js';
+import { SignIn } from 'next-auth/react';
 
 const page = () => {
   const [formData, setFormData] = useState({});
@@ -26,6 +27,10 @@ const page = () => {
     e.preventDefault();
     dispatch(signInStart());
     setLoading(true);
+
+    const result = await signIn("credentials", { email, password, redirect: false });
+    if (!result.error) router.push("/Profile");
+    else alert("Invalid credentials");
     try {
       const res = await fetch(`${process.env.PUBLIC_API}/api/auth/login`, {
         method: 'POST',

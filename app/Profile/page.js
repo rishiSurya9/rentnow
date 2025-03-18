@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux"; // Import to access the Redux state
 import { useRef } from "react";
 import { useSession, signOut } from "next-auth/react";
+import Cookies from "js-cookie";
 const ProfilePage = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
@@ -45,12 +46,15 @@ const ProfilePage = () => {
     });
   };
 
-  const { data: session } = useSession()
-  useEffect(() => {
-    if (!session) router.push("/Login");
-  }, [session, router]);
+  const accessToken = Cookies.get("access_token"); 
 
-  if (!session) return <p>Loading...</p>;
+  useEffect(() => {
+    if (!accessToken) {
+      router.push("/Login"); 
+    }
+  }, [accessToken, router]);
+
+  if (!accessToken) return <p>Loading...</p>; 
 
   const notify = () => {
     toast.success("Information Updated!", {

@@ -136,7 +136,7 @@ const page = ({ params }) => {
                 </li>
                 <li className='flex items-center gap-1 whitespace-nowrap'>
                 <TbBuildingBroadcastTowerFilled />
-                {listing.propertyType}
+                {listing.area}
                 </li>
             </ul>
             {/* <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">

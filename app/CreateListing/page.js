@@ -360,7 +360,7 @@ function Page() {
           <div className="flex gap-2">
               <input
                 type="radio"
-                id="Educational Area"
+                id="area"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}

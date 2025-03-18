@@ -131,7 +131,7 @@ const page = ({ params }) => {
             </p>
             <p>
              <SlShareAlt />
-             {listing.type === 'radio'}
+             {listing.propertyType}
             </p>
 
             <div className="flex gap-4">

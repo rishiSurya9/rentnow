@@ -112,7 +112,7 @@ const page = ({ params }) => {
             </p>
           )}
           <div className="flex flex-col max-w-4xl mx-auto  p-3  gap-6">
-            <div className='flex'>
+            <div className='flex gap-3'>
             <p className="text-2xl font-semibold gap-5">
               {listing.name}
             </p>

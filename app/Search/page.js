@@ -34,6 +34,7 @@ const Page = () => {
     const sortFromUrl = urlParams.get('sort');
     const orderFromUrl = urlParams.get('order');
 
+
     if(searchTermFromUrl||
       typeFromUrl||
       parkingFromUrl||

@@ -25,7 +25,7 @@ function Page() {
     type: "rent",
     parking: false,
     furnished: false,
-    area: "",
+    area: "IT area",
     offer: false,
     imageUrls: [],
   });

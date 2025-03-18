@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 import { useSelector } from 'react-redux';
 import Contact from '@/app/components/Contact.js';
 import 'swiper/css/bundle';
-import { SlShareAlt } from 'react-icons/sl';
+import { TbBuildingBroadcastTowerFilled } from "react-icons/tb";
 
 import {
   FaBath,
@@ -16,6 +16,7 @@ import {
   FaMapMarkerAlt,
   FaParking,
   FaShare,
+  FaBuilding
 } from 'react-icons/fa';
 
 const page = ({ params }) => {
@@ -110,14 +111,13 @@ const page = ({ params }) => {
               Link copied!
             </p>
           )}
-          <div className="flex flex-col max-w-4xl mx-auto  p-3  gap-4">
-            <p className="text-2xl font-semibold gap-3">
+          <div className="flex flex-col max-w-4xl mx-auto  p-3  gap-6">
+            <p className="text-2xl font-semibold gap-5">
               {listing.name}
               {listing.offer
                 ? listing.discountPrice.toLocaleString('en-US')
                 : listing.regularPrice.toLocaleString('en-US')}
-              ,Rs
-              {listing.type === 'rent' && ' / month'}
+              {listing.type === 'rent' && 'Rs/ month'}
             </p>
 
             <ul className='font-semibold text-sm flex items-center gap-4 sm:gap-6 flex-wrap'>
@@ -126,11 +126,12 @@ const page = ({ params }) => {
                 {listing.address}
                 </li>
                 <li className='flex items-center gap-1 whitespace-nowrap'>
-                <SlShareAlt />
+                <FaBuilding />
                 {listing.propertyType}
                 </li>
                 <li className='flex items-center gap-1 whitespace-nowrap'>
-                <p>{listing.area}</p>
+                <TbBuildingBroadcastTowerFilled />
+                {listing.area}
                 </li>
             </ul>
             {/* <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">

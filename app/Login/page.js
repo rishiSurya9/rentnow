@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import { OAuth } from '../components/OAuth.js';
-import { SignIn } from 'next-auth/react';
+
 
 const page = () => {
   const [formData, setFormData] = useState({});

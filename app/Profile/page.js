@@ -46,16 +46,16 @@ const ProfilePage = () => {
     });
   };
 
-  const accessToken = Cookies.get("access_token"); 
-  console.log("Access Token from Cookies:", accessToken);
-  useEffect(() => {
-    if (!accessToken) {
-      console.log("No token found, redirecting to /Login");
-      router.push("/Login"); 
-    }
-  }, [accessToken, router]);
+  // const accessToken = Cookies.get("access_token"); 
+  // console.log("Access Token from Cookies:", accessToken);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     console.log("No token found, redirecting to /Login");
+  //     router.push("/Login"); 
+  //   }
+  // }, [accessToken, router]);
 
-  if (!accessToken) return <p>Loading...</p>; 
+  // if (!accessToken) return <p>Loading...</p>; 
 
   const notify = () => {
     toast.success("Information Updated!", {

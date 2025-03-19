@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux"; // Import to access the Redux state
 import { useRef } from "react";
-import { useSession, signOut } from "next-auth/react";
-import Cookies from "js-cookie";
+
 const ProfilePage = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
@@ -40,7 +39,7 @@ const ProfilePage = () => {
   }, [currentUser]);
 
   const handleChange = (e) => {
-    setFormData({
+    setFormData({value,
       ...formData,
       [e.target.id]: e.target.value,
     });
@@ -238,7 +237,6 @@ const ProfilePage = () => {
         >
           {loading ? "Loading..." : "Update"}
         </button>
-        <button onClick={() => signOut()}>Logout</button>
 
 
         <Link

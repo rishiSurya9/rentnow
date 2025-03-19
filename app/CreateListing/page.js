@@ -66,7 +66,7 @@ function Page() {
     if (e.target.id === "area" ) {
       setPageInfo({
         ...pageInfo,
-        area: e.target.id,
+        area: e.target.value,
       });
     }
     if (e.target.id === "parking" || e.target.id === "furnished" || e.target.id === "offer") {

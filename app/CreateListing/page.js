@@ -57,13 +57,13 @@ function Page() {
   };
 
   const handleChange = (e) => {
-    if (e.target.id === "sell" || e.target.id === "rent") {
+    if (e.target.id === "sale" || e.target.id === "rent") {
       setPageInfo({
         ...pageInfo,
         type: e.target.id,
       });
     }
-    if (e.target.id === "area" ) {
+    if (e.target.id === "Hospital" || e.target.id === "Educational" || e.target.id === "IT" || e.target.id === "Industrial" || e.target.id === "Residential") {
       setPageInfo({
         ...pageInfo,
         area: e.target.id,
@@ -230,7 +230,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="sell"
+                id="sale"
                 name="option"
                 className="w-5"
                 onChange={handleChange}
@@ -360,7 +360,7 @@ function Page() {
           <div className="flex gap-2">
               <input
                 type="radio"
-                id="area"
+                id="Educational"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -370,7 +370,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                 id="area"
+                 id="Industrial"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -380,7 +380,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                 id="area"
+                 id="IT"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -390,7 +390,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="area"
+                id="Residential"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -400,7 +400,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                 id="area"
+                 id="Hospital"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}

@@ -32,13 +32,13 @@ function page({params }) {
 
     
     const handleChange = (e) => {
-      if (e.target.id === "sell" || e.target.id === "rent") {
+      if (e.target.id === "sale" || e.target.id === "rent") {
         setPageInfo({
           ...pageInfo,
           type: e.target.id,
         });
       }
-      if (e.target.id === "Hospital Area" || e.target.id === "Educational Area" || e.target.id === "IT Area" || e.target.id === "Industrial Area" || e.target.id === "Residential Area") {
+      if (e.target.id === "Hospital" || e.target.id === "Educational" || e.target.id === "IT" || e.target.id === "Industrial" || e.target.id === "Residential") {
         setPageInfo({
           ...pageInfo,
           area: e.target.id,
@@ -220,7 +220,7 @@ const handleImageSubmit = async () => {
 
           <div className="flex gap-6 flex-wrap">
             <div className="flex gap-2">
-  <input type="radio" id="sell" name="option" className="w-5" onChange={handleChange} checked={pageInfo.type === 'sell'} />
+  <input type="radio" id="sale" name="option" className="w-5" onChange={handleChange} checked={pageInfo.type === 'sale'} />
   <span>Sell</span>
 </div>
 <div className="flex gap-2">
@@ -327,7 +327,7 @@ const handleImageSubmit = async () => {
           <div className="flex gap-2">
               <input
                 type="radio"
-                id="Educational Area"
+                id="Educational"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -337,7 +337,7 @@ const handleImageSubmit = async () => {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="Industrial Area"
+                id="Industrial"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -347,7 +347,7 @@ const handleImageSubmit = async () => {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="IT Area"
+                id="IT"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -357,7 +357,7 @@ const handleImageSubmit = async () => {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="Residential Area"
+                id="Residential"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}
@@ -367,7 +367,7 @@ const handleImageSubmit = async () => {
             <div className="flex gap-2">
               <input
                 type="radio"
-                id="Hospital Area"
+                id="Hospital"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}

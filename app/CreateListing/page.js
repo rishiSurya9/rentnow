@@ -66,7 +66,7 @@ function Page() {
     if (e.target.id === "area" ) {
       setPageInfo({
         ...pageInfo,
-        area: e.target.value,
+        area: e.target.id,
       });
     }
     if (e.target.id === "parking" || e.target.id === "furnished" || e.target.id === "offer") {
@@ -390,7 +390,7 @@ function Page() {
             <div className="flex gap-2">
               <input
                 type="radio"
-                  id="area"
+                id="area"
                 name="Area"
                 className="w-5"
                 onChange={handleChange}

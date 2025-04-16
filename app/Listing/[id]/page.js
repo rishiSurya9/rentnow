@@ -105,6 +105,7 @@ const page = ({ params }) => {
                 }, 2000);
               }}
             />
+            
           </div>
           {copied && (
             <p className="fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2">
@@ -139,6 +140,7 @@ const page = ({ params }) => {
                 {listing.area}
                 </li>
             </ul>
+
             {/* <p className="flex items-center mt-6 gap-2 text-slate-600  text-sm">
               <FaMapMarkerAlt className="text-green-700" />
               {listing.address}
@@ -161,6 +163,7 @@ const page = ({ params }) => {
                 </p>
               )}
             </div>
+            
             <p className="text-slate-800 ">
               <span className="font-semibold text-black">Descriptionn -</span>
               {listing.description}
